@@ -9,6 +9,23 @@ import { useState, useEffect } from 'react'
 import "../src/App.css"
 
 function App() {
+  //get user from localstorage
+  const [user, setUser] = useState(null)
+  useEffect(()=>{
+    const user = localStorage.getItem("loggedInUser")
+    if(user){
+        setUser(user)
+    }  
+  },[])
+
+  //handle logout
+  const handleLogout = ()=>{
+    localStorage.clear()
+    setUser(null)
+    window.location.reload()
+  }
+
+  //loading state
   const [loading, setLoading] = useState(false);
 
     useEffect(()=>{
@@ -23,7 +40,7 @@ function App() {
     {loading?<div className="loadingScreen"><HashLoader color={"#FA6D4F"} loading={loading} size={100} aria-label="Loading Spinner" data-testid="loader"/> </div> 
     :<><Router>
     <div>
-      <Navbar/ >
+      <Navbar user={user} logout={handleLogout} />
       <Routes>
         <Route exact path='/' Component={Home} />
         <Route exact path='/login' Component={Login} />

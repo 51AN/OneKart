@@ -23,6 +23,7 @@ function Login() {
         await axios.post("/users/login", {email, password}).then((response)=>{
             localStorage.setItem("loggedInUser", response.data[0].username)
             history("/")
+            window.location.reload()
         }).catch((error)=>{
             setError("Invalid email or password")
         })
