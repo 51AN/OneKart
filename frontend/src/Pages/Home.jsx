@@ -14,6 +14,20 @@ function Home() {
     <div>
         <h1>Homepage boiiiii</h1>
         {loggedInUser && <p>Welcome, {loggedInUser}!</p>}
+        <div>
+          <div>
+            <img src={require('../images/kitkat.jpg')} alt='kitkat' style={{ width: '400px', height: '400' }}/>
+            <p>kitkat</p>
+          </div>
+          <div>
+            <img src={require('../images/dairy milk.jpg')} alt='kitkat' style={{ width: '400px', height: '400' }}/>
+            <p>dairy milk</p>
+          </div>
+          <div>
+            <img src={require('../images/OIP.jpg')} alt='kitkat' style={{ width: '400px', height: '400' }}/>
+            <p>snickers</p>
+          </div>
+        </div>
     </div>
   )
 }
