@@ -4,6 +4,7 @@ import Navbar from './Components/Navbar'
 import Home from './Pages/Home'
 import Login from './Pages/Login'
 import Signup from './Pages/Signup'
+import UploadAndDisplayImage from './Pages/upload'
 import { HashLoader } from 'react-spinners'
 import { useState, useEffect } from 'react'
 import "../src/App.css"
@@ -45,6 +46,7 @@ function App() {
         <Route exact path='/' Component={Home} />
         <Route exact path='/login' Component={Login} />
         <Route exact path='/signup' Component={Signup} />
+        <Route exact path='/upload' Component={UploadAndDisplayImage} />
       </Routes>
     </div>
   </Router> </>}
