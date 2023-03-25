@@ -21,6 +21,9 @@ function Navbar({user, logout}) {
                     <li>
                         <Link to="/signup">Signup</Link>
                     </li>
+                    <li>
+                        <Link to="/upload">upload</Link>
+                    </li>
                 </>
             )}
 
