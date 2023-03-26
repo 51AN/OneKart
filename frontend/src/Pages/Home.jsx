@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios';
+import {Link} from 'react-router-dom'
 
 function Home() {
     const [loggedInUser, setLoggedInUser] = useState(null)
@@ -41,11 +42,13 @@ function Home() {
           data.length>0?data.map((el, i) => {
             return (
                 <>
+                <Link to={`/product/${el.name}`}>
                   <div>
                     <img src={`http://localhost:5000/uploads/${el.image}`} alt='bla bla bla' style={{width:'400px', height:'400px'}}/>
                     <p>{el.name}</p>
                     <p>{el.description}</p>
                   </div>
+                </Link>
                 </>
             )
         }) : ""
