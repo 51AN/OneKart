@@ -8,6 +8,7 @@ import UploadAndDisplayImage from './Pages/upload'
 import { HashLoader } from 'react-spinners'
 import { useState, useEffect } from 'react'
 import "../src/App.css"
+import Product from './Pages/Product'
 
 function App() {
   //get user from localstorage
@@ -47,6 +48,7 @@ function App() {
         <Route exact path='/login' Component={Login} />
         <Route exact path='/signup' Component={Signup} />
         <Route exact path='/upload' Component={UploadAndDisplayImage} />
+        <Route exact path='/product/:name' Component={Product} />
       </Routes>
     </div>
   </Router> </>}
