@@ -1,7 +1,7 @@
 const express = require('express')
 const multer = require('multer');
 const connection = require('../config/dbconnect');
-const { allProducts, uploadProduct } = require('../controllers/productController')
+const { getMyProduct, updateProduct, deleteProduct } = require('../controllers/productController')
 const router = express.Router()
 
 var imgconfig = multer.diskStorage({
@@ -31,12 +31,12 @@ var upload = multer({
 //router.post('/', uploadProduct)
 
 router.post("/",upload.single("photo"),(req,res)=>{
-    const {name, description} = req.body;
+    const {name, description, price, availability, quantity, bid} = req.body;
     const {filename} = req.file;
     
     try {
         
-        connection.query("INSERT INTO products SET ?",{name:name, description:description, image:filename},(err,result)=>{
+        connection.query("INSERT INTO products SET ?",{name:name, description:description, image:filename, price:price, sellcount:5, availability:availability, quantity:quantity, bid:bid},(err,result)=>{
             if(err){
                 console.log("error")
             }else{
@@ -64,5 +64,8 @@ router.get("/",(req,res)=>{
     }
 });
 
+router.get("/myproduct/:id", getMyProduct)
+router.put("/myproduct/:id", updateProduct)
+router.delete("/myproduct/:id", deleteProduct)
 
 module.exports = router

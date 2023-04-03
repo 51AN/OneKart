@@ -1,9 +1,8 @@
 const asynchandler = require('express-async-handler')
 const connection = require('../config/dbconnect')
 
-//get all products
-const allProducts = asynchandler(async(req, res)=>{
-    const sql = 'SELECT * FROM products'
+const getMyProduct = asynchandler(async(req, res)=>{
+    const sql = `SELECT * FROM products WHERE id = ${req.params.id}`
 
     connection.query(sql, (err, results) => {
         if(err){
@@ -14,21 +13,35 @@ const allProducts = asynchandler(async(req, res)=>{
     })
 })
 
-const uploadProduct = asynchandler(async(req, res)=>{
-    const{name, description} = req.body
-    const {image} = req.file
+const updateProduct = asynchandler(async(req, res)=>{
+    const {name, price, description, quantity, availability} = req.body
+    const sql = `UPDATE products
+                 SET name="${name}", price="${price}", description="${description}", quantity="${quantity}", availability="${availability}"
+                 WHERE id = ${req.params.id}`
 
-    const insert = `INSERT INTO products(name, description, image) VALUES('${name}', '${description}', '${image}')`
-    connection.query(insert, (err, results) => {
+    connection.query(sql, (err, results) => {
         if(err){
-            res.status(400).json(err)
+            res.status(400).json({msg: err})
             return
         }
-        res.status(200).json({msg: 'Upload Successful'})
+        res.status(200).json(results)
+    })
+})
+
+const deleteProduct = asynchandler(async(req, res)=>{
+    const sql = `DELETE FROM products WHERE id = ${req.params.id}`
+
+    connection.query(sql, (err, results) => {
+        if(err){
+            res.status(400).json({msg: "An error occured"})
+            return
+        }
+        res.status(200).json(results)
     })
 })
 
 module.exports = {
-    allProducts,
-    uploadProduct,
+    getMyProduct,
+    updateProduct,
+    deleteProduct,
 }
