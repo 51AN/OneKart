@@ -33,7 +33,7 @@ const loginUser = asynchandler(async(req, res)=>{
 })
 
 const registerUser = asynchandler(async(req, res)=>{
-    const{username, email, password} = req.body
+    const{username, email, password, address} = req.body
    
     //hash password
     const salt = await bcrypt.genSalt(10)
@@ -48,7 +48,7 @@ const registerUser = asynchandler(async(req, res)=>{
             return
         }
 
-        const insert = `INSERT INTO users(username, email, password) VALUES('${username}', '${email}', '${hashedpass}')`
+        const insert = `INSERT INTO users(username, email, password, address, role) VALUES('${username}', '${email}', '${hashedpass}', '${address}', 'customer')`
         connection.query(insert, (err, results) => {
             if(err){
                 res.status(400).json(err)
