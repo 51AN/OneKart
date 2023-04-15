@@ -86,7 +86,6 @@ const UploadAndDisplayImage = () => {
             width={"250px"}
             src={URL.createObjectURL(selectedImage)}
           />
-          <p>{URL.createObjectURL(selectedImage)}</p>
           <br />
           <button onClick={() => setSelectedImage(null)}>Remove</button>
         </div>

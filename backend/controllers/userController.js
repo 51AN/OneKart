@@ -56,6 +56,22 @@ const registerUser = asynchandler(async(req, res)=>{
             }
             res.status(200).json({msg: 'Registration Successful'})
         })
+
+        const uid = `SELECT id FROM users WHERE email = "${email}"`
+        connection.query(uid, (err, results) => {
+            if(err){
+                console.log(err)
+                return
+            }
+
+            const assignCart = `INSERT INTO carts(uid) VALUES('${results[0].id}')`
+            connection.query(assignCart, (err, results) => {
+                if(err){
+                    console.log(err)
+                    return
+                }
+            })
+        })
     }) 
 })
 

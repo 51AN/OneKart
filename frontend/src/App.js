@@ -47,7 +47,7 @@ function App() {
         <Route exact path='/login' Component={Login} />
         <Route exact path='/signup' Component={Signup} />
         <Route exact path='/upload' Component={UploadAndDisplayImage} />
-        <Route exact path='/product/:name' Component={Product} />
+        <Route exact path='/product/:id' Component={Product} />
         <Route exact path='/product-manager/:id' Component={ProductManager} />
       </Routes>
     </div>
