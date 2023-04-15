@@ -42,7 +42,7 @@ function Home() {
           data.length>0?data.map((el, i) => {
             return (
                 <>
-                <Link to={`/product/${el.name}`}>
+                <Link to={`/product/${el.id}`}>
                   <div>
                     <img src={`http://localhost:5000/uploads/${el.image}`} alt='bla bla bla' style={{width:'400px', height:'400px'}}/>
                     <p>{el.name}</p>
