@@ -28,10 +28,20 @@ const loginUser = asynchandler(async(req, res)=>{
         const pass = results[0].password
         bcrypt.compare(password, pass, (err, result)=>{
             if(result){
+                req.session.uid = results[0].id
                 req.session.username = results[0].username
                 req.session.role = results[0].role
-                
-                res.status(200).json(results)
+
+                const getCartId = `SELECT id FROM carts WHERE uid = "${req.session.uid}"`
+                connection.query(getCartId, (err, reslt)=>{
+                    if(err){
+                        console.log(err)
+                        return
+                    }
+                    req.session.cartId = reslt[0].id
+
+                    res.status(200).json(results)
+                })
             }
             else{
                 res.status(400).json({msg: 'Invalid information'})
