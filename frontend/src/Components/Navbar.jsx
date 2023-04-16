@@ -1,13 +1,22 @@
 import React from 'react';
 import {Link, useNavigate} from 'react-router-dom';
+import axios from 'axios';
 
 function Navbar({user, role}) {
     const history = useNavigate()
     const Logout = ()=>{
-        localStorage.clear()
-        user = ''
-        history("/")
-        window.location.reload()
+        axios.post("users/logout").then(
+            (response)=>{
+                if(response.data.msg === "Logged out"){
+                    localStorage.clear()
+                    user = ''
+                    history("/")
+                    window.location.reload()
+                }
+            }
+        ).catch((error)=>{
+            console.log("Error logging out")
+        })
     }
     let show = ''
     if(user){

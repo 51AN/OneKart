@@ -28,12 +28,26 @@ const loginUser = asynchandler(async(req, res)=>{
         const pass = results[0].password
         bcrypt.compare(password, pass, (err, result)=>{
             if(result){
+                req.session.username = results[0].username
+                req.session.role = results[0].role
+                
                 res.status(200).json(results)
             }
             else{
                 res.status(400).json({msg: 'Invalid information'})
             }
         })
+    })
+})
+
+const logoutUser = asynchandler(async(req, res)=>{
+    req.session.destroy((err)=>{
+        if(err){
+            console.log(err)
+        }
+        else{
+            res.json({msg: "Logged out"})
+        }
     })
 })
 
@@ -85,4 +99,5 @@ module.exports = {
     getAllUsers,
     loginUser,
     registerUser,
+    logoutUser,
 }
