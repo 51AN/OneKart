@@ -17,10 +17,6 @@ const getAllUsers = asynchandler(async(req, res)=>{
 const loginUser = asynchandler(async(req, res)=>{
     const{email, password} = req.body
 
-    //hash password
-    const salt = await bcrypt.genSalt(10)
-    const hashedpass = await bcrypt.hash(password, salt) 
-
     const sql = `SELECT * FROM users WHERE email = "${email}"`
 
     connection.query(sql, (err, results) => {
@@ -28,7 +24,16 @@ const loginUser = asynchandler(async(req, res)=>{
             res.status(400).json({msg: 'Invalid information'})
             return
         }
-        res.status(200).json(results)
+
+        const pass = results[0].password
+        bcrypt.compare(password, pass, (err, result)=>{
+            if(result){
+                res.status(200).json(results)
+            }
+            else{
+                res.status(400).json({msg: 'Invalid information'})
+            }
+        })
     })
 })
 
