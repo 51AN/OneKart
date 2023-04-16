@@ -42,6 +42,8 @@ function Navbar({user, role}) {
                             <Link to="/">Home</Link>
                         </li>
                         <li><Link>{user}</Link></li>
+                        <li><Link to="/cart/">Cart</Link></li>
+                        <li><Link to="/orders/">Orders</Link></li>
                         <li onClick={Logout}><Link>Logout</Link></li>
                     </>
                 </ul>

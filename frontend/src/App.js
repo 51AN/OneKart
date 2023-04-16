@@ -11,6 +11,8 @@ import "../src/App.css"
 import Product from './Pages/Product'
 import HomeManager from './Pages/HomeManager'
 import ProductManager from './Pages/ProductManager'
+import Cart from './Pages/Cart'
+import Orders from './Pages/Orders'
 
 function App() {
   //get user from localstorage
@@ -49,6 +51,8 @@ function App() {
         <Route exact path='/upload' Component={UploadAndDisplayImage} />
         <Route exact path='/product/:id' Component={Product} />
         <Route exact path='/product-manager/:id' Component={ProductManager} />
+        <Route exact path='/cart/' Component={Cart} />
+        <Route exact path='/orders/' Component={Orders} />
       </Routes>
     </div>
   </Router> </>}
