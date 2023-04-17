@@ -1,11 +1,27 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import axios from 'axios';
 
 function Navbar({user, role}) {
+    const[total, setTotal] = useState(null)
     const history = useNavigate()
+
+    const getTotal = async()=>{
+        axios.get('/cart/total').then(
+            (response)=>{
+                setTotal(response.data[0].total)
+            }
+        ).catch((error)=>{
+            console.log(error)
+        })
+    }
+
+    useEffect(()=>{
+        getTotal()
+    },[])
+
     const Logout = ()=>{
-        axios.post("users/logout").then(
+        axios.post("/users/logout").then(
             (response)=>{
                 if(response.data.msg === "Logged out"){
                     localStorage.clear()
@@ -42,7 +58,7 @@ function Navbar({user, role}) {
                             <Link to="/">Home</Link>
                         </li>
                         <li><Link>{user}</Link></li>
-                        <li><Link to="/cart/">Cart</Link></li>
+                        <li><Link to="/cart/">Cart({total})</Link></li>
                         <li><Link to="/orders/">Orders</Link></li>
                         <li onClick={Logout}><Link>Logout</Link></li>
                     </>

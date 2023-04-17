@@ -44,6 +44,9 @@ const UploadAndDisplayImage = () => {
     await axios.post("/products/", formData, config).then(
       (response)=>{
         setMsg("Product uploaded successfully")
+        setTimeout(() => {
+          setMsg('')
+        }, 2000)
       }
     ).catch((error)=>{
       setMsg("An error occured while uploading")
