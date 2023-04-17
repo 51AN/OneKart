@@ -5,12 +5,15 @@ import axios from 'axios'
 function Product() {
   const {id} = useParams()
   const[product, setProduct] = useState(null)
+  const[price, setPrice] = useState(null)
+  const[msg, setMsg] = useState(null)
 
 
   const getProductData = async()=>{
       await axios.get(`/products/myproduct/${id}`).then(
           (response)=>{
               setProduct(response.data[0])
+              setPrice(response.data[0].price)
               console.log(response.data)
           }
       ).catch((error)=>{
@@ -21,6 +24,19 @@ function Product() {
   useEffect(() => {
       getProductData()
   },[])
+
+  const addProductToCart = async()=>{
+    await axios.post('/cart/', {pid:id, perunitprice:price}).then(
+        (response)=>{
+            setMsg(response.data.msg)
+            setTimeout(() => {
+                setMsg('')
+              }, 2000)
+        }
+    ).catch((error)=>{
+        console.log(error)
+    })
+  }
 
   let data = ''
   if(product){
@@ -38,7 +54,8 @@ function Product() {
   return (
     <div>
       <p>{data}</p>
-      <button>Add to cart</button>
+      <button onClick={addProductToCart}>Add to cart</button>
+      {msg && <p>{msg}</p>}
     </div>
   )
 }

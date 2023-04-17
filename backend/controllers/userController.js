@@ -38,8 +38,9 @@ const loginUser = asynchandler(async(req, res)=>{
                         console.log(err)
                         return
                     }
-                    req.session.cartId = reslt[0].id
-
+                    if(reslt.length > 0){
+                        req.session.cartId = reslt[0].id
+                    }
                     res.status(200).json(results)
                 })
             }
