@@ -1,7 +1,7 @@
 const express = require('express')
 const multer = require('multer');
 const connection = require('../config/dbconnect');
-const { getMyProduct, updateProduct, deleteProduct } = require('../controllers/productController')
+const { getMyProduct, updateProduct, deleteProduct, topSellingProducts } = require('../controllers/productController')
 const router = express.Router()
 
 var imgconfig = multer.diskStorage({
@@ -64,6 +64,7 @@ router.get("/",(req,res)=>{
     }
 });
 
+router.get("/topselling/", topSellingProducts)
 router.get("/myproduct/:id", getMyProduct)
 router.put("/myproduct/:id", updateProduct)
 router.delete("/myproduct/:id", deleteProduct)
