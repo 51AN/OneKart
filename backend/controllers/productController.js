@@ -28,6 +28,19 @@ const updateProduct = asynchandler(async(req, res)=>{
     })
 })
 
+const topSellingProducts = asynchandler(async(req, res)=>{
+    const sql = `SELECT * FROM products ORDER BY sellcount DESC LIMIT 5`
+
+    connection.query(sql, (err, results) => {
+        if(err){
+            res.status(400).json({msg: "An error occured"})
+            return
+        }
+        res.status(200).json({data: results})
+    })
+
+})
+
 const deleteProduct = asynchandler(async(req, res)=>{
     const sql = `DELETE FROM products WHERE id = ${req.params.id}`
 
@@ -44,4 +57,5 @@ module.exports = {
     getMyProduct,
     updateProduct,
     deleteProduct,
+    topSellingProducts,
 }
