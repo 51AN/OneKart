@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios';
 import {Link} from 'react-router-dom'
-
+import "../style/Home.css"
 function Home() {
     const [loggedInUser, setLoggedInUser] = useState(null)
 
@@ -47,16 +47,20 @@ function Home() {
   }, [])
 
   return (
-    <div>
-        <h1>Homepage boiiiii</h1>
+    <>
+    <div className="text-box">
+      <h1>This is the homepage</h1>
+      <h2>Top selling products</h2>
+    </div>
+      <div className = "top-container">
         {loggedInUser && <p>Welcome, {loggedInUser}!</p>}
-        <h2>Top selling products</h2>
+        
         {topsellingProductData &&
           topsellingProductData.length>0?topsellingProductData.map((el, i) => {
             return (
                 <>
                 <Link to={`/product/${el.id}`}>
-                  <div>
+                  <div className = "top-selling">
                     <img src={`http://localhost:5000/uploads/${el.image}`} alt='bla bla bla' style={{width:'400px', height:'400px'}}/>
                     <p>{el.name}</p>
                     <p>{el.description}</p>
@@ -66,13 +70,17 @@ function Home() {
             )
         }) : ""
         }
-        <h2>All products</h2>
+      </div>
+        <div className="text-box">
+          <h2>All products</h2>
+        </div>
+      <div className="all-container">
         {data &&
           data.length>0?data.map((el, i) => {
             return (
                 <>
                 <Link to={`/product/${el.id}`}>
-                  <div>
+                  <div className = "all-products">
                     <img src={`http://localhost:5000/uploads/${el.image}`} alt='bla bla bla' style={{width:'400px', height:'400px'}}/>
                     <p>{el.name}</p>
                     <p>{el.description}</p>
@@ -82,7 +90,8 @@ function Home() {
             )
         }) : ""
         }
-    </div>
+      </div>
+    </>
   )
 }
 

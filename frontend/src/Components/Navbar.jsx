@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import axios from 'axios';
-
+import "../style/Navbar.css"
 function Navbar({user, role}) {
     const[total, setTotal] = useState(null)
     const history = useNavigate()
@@ -83,7 +83,9 @@ function Navbar({user, role}) {
     }
   return (
     <nav>
-        {show}
+        <div className="nav-links">
+            {show}
+        </div>
     </nav>
   )
 }

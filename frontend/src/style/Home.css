@@ -1,0 +1,61 @@
+.top-container{
+    width: 94%;
+    height: 90%;
+    padding: 3%;
+    display: flex;
+    flex-wrap: wrap;
+    overflow-y: auto;
+    justify-content:space-between;
+
+}
+
+.all-container{
+    width: 94%;
+    height: 90%;
+    padding: 3%;
+    display: flex;
+    flex-wrap: wrap;
+    overflow-y: auto;
+    justify-content:space-between;
+
+}
+
+
+  
+
+.top-selling{
+    position: relative;
+    width: 15%;
+    height: 45%;
+    border-radius: 20px;
+   
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.all-products{
+    position: relative;
+    width: 15%;
+    height: 45%;
+    border-radius: 20px;
+    background-color: rgb(30, 42, 62);
+    border: 1px solid rgba(54, 69, 98, 0.18);
+    padding: 1%;
+    margin-bottom: 2%;
+    background: rgb(30, 42, 62);
+    background: linear-gradient(
+      75deg,
+      rgb(21, 33, 51) 0%,
+      rgba(40, 52, 75, 0) 100%
+    );
+    transition: all 0.2s ease;
+    cursor: pointer;
+
+}
+
+
+
+
+.text-box{
+    text-align: center;
+}
