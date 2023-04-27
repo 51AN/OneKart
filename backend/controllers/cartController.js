@@ -52,7 +52,7 @@ const addToCart = asynchandler(async(req, res)=>{
 })
 
 const getCartItems = asynchandler(async(req, res)=>{
-    const sql = `SELECT products.name, products.image, cart_items.quantity, cart_items.price
+    const sql = `SELECT products.id, products.name, products.image, cart_items.quantity, cart_items.price
                  FROM products 
                  JOIN cart_items ON products.id = cart_items.pid
                  WHERE cart_items.cartid = ${req.session.cartId}`
@@ -80,8 +80,64 @@ const getTotalItem = asynchandler(async(req, res)=>{
     })
 })
 
+const increaseItem = asynchandler(async(req, res)=>{
+    const sql = `UPDATE cart_items SET price = price + (price/quantity), quantity = quantity + 1 WHERE cartid = ${req.session.cartId} AND pid = ${req.params.id}`
+
+    connection.query(sql, (err, results)=>{
+        if(err){
+            res.status(400).json(err)
+            return
+        }
+
+        res.status(200).json(results)
+    })
+})
+
+const decreaseItem = asynchandler(async(req, res)=>{
+    const sql = `UPDATE cart_items SET price = price - (price/quantity), quantity = quantity - 1 WHERE cartid = ${req.session.cartId} AND pid = ${req.params.id}`
+
+    connection.query(sql, (err, results)=>{
+        if(err){
+            res.status(400).json(err)
+            return
+        }
+
+        res.status(200).json(results)
+    })
+})
+
+const deleteItem = asynchandler(async(req, res)=>{
+    const sql = `DELETE FROM cart_items WHERE cartid = ${req.session.cartId} AND pid = ${req.params.id}`
+
+    connection.query(sql, (err, results)=>{
+        if(err){
+            res.status(400).json(err)
+            return
+        }
+
+        res.status(200).json(results)
+    })
+})
+
+const getTotalAmount = asynchandler(async(req, res)=>{
+    const sql = `SELECT SUM(price) AS totalAmount FROM cart_items WHERE cartid = ${req.session.cartId}`
+
+    connection.query(sql, (err, results)=>{
+        if(err){
+            res.status(400).json(err)
+            return
+        }
+
+        res.status(200).json(results)
+    })
+})
+
 module.exports = {
     addToCart,
     getCartItems,
     getTotalItem,
+    increaseItem,
+    decreaseItem,
+    deleteItem,
+    getTotalAmount,
 }
