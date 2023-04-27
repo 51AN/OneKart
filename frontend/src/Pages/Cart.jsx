@@ -3,6 +3,7 @@ import axios from 'axios'
 
 function Cart() {
   const [data, setData] = useState(null)
+  const [totalAmountToPay, setTotalAmountToPay] = useState(null)
 
   const getCartData = async()=>{
     await axios.get('/cart/').then(
@@ -15,8 +16,67 @@ function Cart() {
     })
   }
 
+  const decreaseItem = async(id)=>{
+    await axios.put(`/cart/decrease/${id}`,{}).then(
+      (response)=>{
+        console.log("decrease successful")
+      }
+    ).catch((error)=>{
+      console.log(error)
+    })
+  }
+
+  const increaseItem = async(id)=>{
+    await axios.put(`/cart/increase/${id}`,{}).then(
+      (response)=>{
+        console.log("increase successful")
+      }
+    ).catch((error)=>{
+      console.log(error)
+    })
+  }
+
+  const deleteItem = async(id)=>{
+    await axios.delete(`/cart/delete/${id}`).then(
+      (response)=>{
+        console.log("delete successful")
+      }
+    ).catch((error)=>{
+      console.log(error)
+    })
+  }
+
+  const getAmountToPay = async()=>{
+    await axios.get(`/cart/totalamount`).then(
+      (response)=>{
+        setTotalAmountToPay(response.data[0].totalAmount)
+      }
+    ).catch((error)=>{
+      console.log(error)
+    })
+  }
+
+  const handleDelete = async(Id)=>{
+    await deleteItem(Id)
+    await getCartData()
+    await getAmountToPay()
+  }
+
+  const handleIncrease = async(Id)=>{
+    await increaseItem(Id)
+    await getCartData()
+    await getAmountToPay()
+  }
+
+  const handleDecrease = async(Id)=>{
+    await decreaseItem(Id)
+    await getCartData()
+    await getAmountToPay()
+  }
+
   useEffect(()=>{
     getCartData()
+    getAmountToPay()
   },[])
 
   return (
@@ -29,13 +89,24 @@ function Cart() {
                   <div>
                     <img src={`http://localhost:5000/uploads/${el.image}`} alt='bla bla bla' style={{width:'100px', height:'100px'}}/>
                     <p>{el.name}</p>
+                    <button onClick={()=>handleIncrease(el.id)}>+</button>
                     <p>{el.quantity}</p>
+                    <button onClick={()=>handleDecrease(el.id)}>-</button>
                     <p>{el.price}</p>
+                    <button onClick={()=>handleDelete(el.id)}>Delete</button>
                   </div>
                 </>
             )
         }) : <p>Cart is empty</p>
       }
+      {totalAmountToPay && <div>
+        <h3>
+          Total Amount to pay
+        </h3>
+        <p>
+          {totalAmountToPay}
+        </p>
+        <button>Confirm Order</button></div>}
     </div>
   )
 }
