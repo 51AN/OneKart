@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 21, 2023 at 10:46 PM
+-- Generation Time: Apr 28, 2023 at 10:45 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -81,10 +81,23 @@ CREATE TABLE `cart_items` (
 
 INSERT INTO `cart_items` (`id`, `cartid`, `pid`, `quantity`, `price`) VALUES
 (1, 4, 17, 5, 200),
-(3, 4, 32, 6, 600),
-(5, 3, 17, 1, 40),
-(6, 3, 38, 1, 30),
-(7, 3, 37, 1, 30);
+(3, 4, 32, 5, 500);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `id` int(11) NOT NULL,
+  `cartid` int(11) NOT NULL,
+  `pid` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `price` int(11) NOT NULL,
+  `bid` int(11) NOT NULL,
+  `status` varchar(100) NOT NULL DEFAULT 'Pending'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -179,6 +192,15 @@ ALTER TABLE `cart_items`
   ADD KEY `pid` (`pid`);
 
 --
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `bid` (`bid`),
+  ADD KEY `pid` (`pid`),
+  ADD KEY `cartid` (`cartid`);
+
+--
 -- Indexes for table `products`
 --
 ALTER TABLE `products`
@@ -211,7 +233,13 @@ ALTER TABLE `carts`
 -- AUTO_INCREMENT for table `cart_items`
 --
 ALTER TABLE `cart_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `products`
@@ -247,6 +275,14 @@ ALTER TABLE `carts`
 ALTER TABLE `cart_items`
   ADD CONSTRAINT `cart_items_ibfk_1` FOREIGN KEY (`cartid`) REFERENCES `carts` (`id`),
   ADD CONSTRAINT `cart_items_ibfk_2` FOREIGN KEY (`pid`) REFERENCES `products` (`id`);
+
+--
+-- Constraints for table `orders`
+--
+ALTER TABLE `orders`
+  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`bid`) REFERENCES `branch` (`bid`),
+  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`pid`) REFERENCES `products` (`id`),
+  ADD CONSTRAINT `orders_ibfk_3` FOREIGN KEY (`cartid`) REFERENCES `carts` (`id`);
 
 --
 -- Constraints for table `products`

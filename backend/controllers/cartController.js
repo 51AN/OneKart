@@ -63,7 +63,22 @@ const getCartItems = asynchandler(async(req, res)=>{
             return
         }
 
-        res.status(200).json({data:results})
+        for (let i = 0; i < results.length; i++) {
+            const item = results[i]
+            if (item.quantity === 0) {
+                const sql1 = `DELETE FROM cart_items WHERE cartid = ${req.session.cartId} AND pid = ${item.id}`
+
+                connection.query(sql1, (err, result)=>{
+                    if(err){
+                        console.log(err)
+                        return
+                    }
+                })
+            }
+        }
+
+        const filteredResults = results.filter(item => item.quantity > 0)
+        res.status(200).json({data:filteredResults})
     })
 })
 
