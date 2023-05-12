@@ -1,6 +1,8 @@
 import React, {useState} from 'react'
 import {useNavigate} from 'react-router-dom'
 import axios from 'axios'
+import '../style/Login.css'
+import { Link } from 'react-router-dom'
 
 function Login() {
     const [email, setEmail] = useState("")
@@ -35,24 +37,51 @@ function Login() {
     }
 
   return (
-    <div>
-        <h1>Login page</h1>
-        {error && <p>{error}</p>}
-        <form onSubmit={handleSubmit}>
-            <label>
-                Email:
-                <input type="email" value={email} onChange={handleEmailChange} />
-            </label>
-            <label>
-                Password:
-                <input type="password" value={password} onChange={handlePasswordChange} />
-            </label>
-            <br />
-            <button type='submit'>
-                Login
-            </button>
-        </form>
-    </div>
+    <div className="login_container">
+			<div className="login_form_container">
+				<div className="login_left">
+					<form className="login_form_container2"
+                        onSubmit={handleSubmit}>
+						<h1>Login to Your Account</h1>
+						<input
+							type="email"
+							placeholder="Email"
+							value={email} 
+                            onChange={handleEmailChange}
+							required
+							className="login_input"
+						/>
+						<input
+							type="password"
+							placeholder="Password"
+							value={password} 
+                            onChange={handlePasswordChange}
+							required
+							className="login_input"
+						/>
+						
+						<Link to="/forgot-password" style={{ alignSelf: "flex-start" }}>
+							<p style={{ padding: "7px 150px" }}>Forgot Password ?</p>
+						</Link>
+						{error && <div className="login_error_msg">{error}</div>}
+						<button type="submit" className="login_green_btn">
+							Log In
+						</button>
+						<button className="login_green_btn">
+							<Link className="login_green_btn_link" to="/">Go To Home</Link>
+						</button>
+					</form>
+				</div>
+				<div className="login_right">
+					<h1>New Here ?</h1>
+					<Link to="/signup">
+						<button type="button" className="login_white_btn">
+							Sign Up
+						</button>
+					</Link>
+				</div>
+			</div>
+		</div>
   )
 }
 

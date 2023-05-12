@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import axios from 'axios'
-
+import '../style/Signup.css'
+import {Link} from 'react-router-dom'
 function Signup() {
     const [username, setUsername] = useState("")
     const [email, setEmail] = useState("")
@@ -36,33 +37,64 @@ function Signup() {
         })
     }
   return (
-    <div>
-        <h1>Signup page</h1>
-        {error && <p>{error}</p>}
-        {msg && <p>{msg}</p>}
-        <form onSubmit={handleSubmit}>
-            <label>
-                Username:
-                <input type="text" value={username} onChange={handleUsernameChange} />
-            </label>
-            <label>
-                Email:
-                <input type="email" value={email} onChange={handleEmailChange} />
-            </label>
-            <label>
-                Password:
-                <input type="password" value={password} onChange={handlePasswordChange} />
-            </label>
-            <label>
-                Address:
-                <input type="text" value={address} onChange={handleAddressChange} />
-            </label>
-            <br />
-            <button type='submit'>
-                Sign up
-            </button>
-        </form>
-    </div>
+    <div className="signup_container">
+			<div className="signup_form_container1">
+				<div className="signup_left">
+					<h1>Welcome Back</h1>
+					<Link to="/login">
+						<button type="button" className="signup_white_btn">
+							Sign in
+						</button>
+					</Link>
+				</div>
+				<div className="signup_right">
+					<form className="signup_form_container" onSubmit={handleSubmit}>
+						<h1>Create Account</h1>
+						<input
+							type="text"
+							placeholder="User Name"
+							value={username} 
+                            onChange={handleUsernameChange}
+							required
+							className="signup_input"
+						/>
+						<input
+							type="email"
+							placeholder="Email"
+							value={email} 
+                            onChange={handleEmailChange}
+							required
+							className="signup_input"
+						/>
+						<input
+							type="password"
+							placeholder="Password"
+							value={password} 
+                            onChange={handlePasswordChange}
+							required
+							className="signup_input"
+						/>
+                        <input
+							type="text"
+							placeholder="Address"
+							value={address} 
+                            onChange={handleAddressChange}
+							required
+							className="signup_input"
+						/>
+						
+						{error && <div className="signup_error_msg">{error}</div>}
+						{msg && <div className="signup_success_msg">{msg}</div>}
+						<button type="submit" className="signup_green_btn">
+							Sign Up
+						</button>
+						<button className="login_green_btn">
+							<Link className="login_green_btn_link" to="/">Go To Home</Link>
+						</button>
+					</form>
+				</div>
+			</div>
+		</div>
   )
 }
 

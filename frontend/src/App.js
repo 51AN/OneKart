@@ -27,20 +27,10 @@ function App() {
     }  
   },[])
 
-  //loading state
-  const [loading, setLoading] = useState(false);
-
-    useEffect(()=>{
-        setLoading(true)
-        setTimeout(() => {
-            setLoading(false)
-        }, 2000)
-    },[])
 
   return (
   <>
-    {loading?<div className="loadingScreen"><HashLoader color={"#FA6D4F"} loading={loading} size={100} aria-label="Loading Spinner" data-testid="loader"/> </div> 
-    :<>
+    
     
     <Router>
     <div className="main_container">
@@ -58,7 +48,7 @@ function App() {
       </Routes>
     </div>
   </Router>
-   </>}
+  
     
   </>
   )

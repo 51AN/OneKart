@@ -14,16 +14,21 @@ nav img{
     text-align: right;
 }
 
+.nav-links ul{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
 .nav-links ul li{
     list-style: none;
     display: inline-block;
-    padding: 8px 12px;
+    padding: 8px 10px;
     position: relative;
 }
 .nav-links ul li a{
     color: rgb(0, 0, 0);
     text-decoration: none;
-    font-size: 13px;
+    font-size: px;
 
 }
 
