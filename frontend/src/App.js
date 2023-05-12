@@ -40,8 +40,10 @@ function App() {
   return (
   <>
     {loading?<div className="loadingScreen"><HashLoader color={"#FA6D4F"} loading={loading} size={100} aria-label="Loading Spinner" data-testid="loader"/> </div> 
-    :<><Router>
-    <div>
+    :<>
+    
+    <Router>
+    <div className="main_container">
       <Navbar user={user} role={role} />
       <Routes>
         <Route exact path='/' Component={Home} />
@@ -55,7 +57,8 @@ function App() {
         <Route exact path='/orders/' Component={Orders} />
       </Routes>
     </div>
-  </Router> </>}
+  </Router>
+   </>}
     
   </>
   )
