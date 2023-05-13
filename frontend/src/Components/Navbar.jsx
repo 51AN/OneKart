@@ -82,11 +82,13 @@ function Navbar({user, role}) {
         )
     }
   return (
+    <header>
     <nav>
-        <div className="nav-links">
+        
             {show}
-        </div>
+        
     </nav>
+    </header>
   )
 }
 
