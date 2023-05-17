@@ -1,10 +1,10 @@
 .login_container {
 	width: 100%;
-	min-height: 100vh;
+	min-height: 85vh;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-    
+  
     
 }
 
@@ -12,9 +12,8 @@
 	width: 900px;
 	height: 500px;
 	display: flex;
-    padding-bottom: 100px;
 	border-radius: 10px;
-	
+	outline:#c8cfcf solid 2px;
 }
 
 .login_left {
@@ -56,7 +55,7 @@
 	padding: 15px;
 	margin: 5px 0;
 	font-size: 14px;
-	background-color: #f34646;
+	background-color: #468bf3;
 	color: white;
 	border-radius: 5px;
 	text-align: center;
@@ -69,7 +68,7 @@
 	align-items: center;
 	justify-content: center;
 	background: rgb(255,255,255);
-background: linear-gradient(22deg, rgba(255,255,255,0) 0%, rgba(255,124,0,1) 0%, rgba(250,71,71,1) 76%);
+background: linear-gradient(22deg, rgba(255,255,255,0) 0%, rgb(0, 204, 255) 0%, rgb(71, 149, 250) 76%);
 	border-top-right-radius: 10px;
 	border-bottom-right-radius: 10px;
 }
@@ -95,7 +94,7 @@ background: linear-gradient(22deg, rgba(255,255,255,0) 0%, rgba(255,124,0,1) 0%,
 }
 
 .login_green_btn {
-	background-color: #ff7c00;
+	background-color: #00b7ff;
 	color: white;
 	margin: 5px;
 }
@@ -154,7 +153,7 @@ background: linear-gradient(22deg, rgba(255,255,255,0) 0%, rgba(255,124,0,1) 0%,
     left: 4px;
     width: 12px;
     height: 12px;
-    background: #ff7c00;
+    background: #00b7ff;
     border-radius: 50%;
     opacity: 0;
     transform: scale(1.5);
@@ -165,8 +164,8 @@ background: linear-gradient(22deg, rgba(255,255,255,0) 0%, rgba(255,124,0,1) 0%,
   }
   #option-1:checked:checked ~ .option-1,
   #option-2:checked:checked ~ .option-2{
-    border-color: #ff7c00;
-    background: #ff7c00;
+    border-color: #00b7ff;
+    background: #00b7ff;
   }
   #option-1:checked:checked ~ .option-1 .dot,
   #option-2:checked:checked ~ .option-2 .dot{

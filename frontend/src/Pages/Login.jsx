@@ -60,9 +60,9 @@ function Login() {
 							className="login_input"
 						/>
 						
-						<Link to="/forgot-password" style={{ alignSelf: "flex-start" }}>
+						{/* <Link to="/forgot-password" style={{ alignSelf: "flex-start" }}>
 							<p style={{ padding: "7px 150px" }}>Forgot Password ?</p>
-						</Link>
+						</Link> */}
 						{error && <div className="login_error_msg">{error}</div>}
 						<button type="submit" className="login_green_btn">
 							Log In
