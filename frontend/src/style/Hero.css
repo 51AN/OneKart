@@ -1,0 +1,29 @@
+.container{
+    place-content: center;
+    margin: 2%;
+    border-radius: 5px;
+    background-color: #1278dd;
+    display: flex;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+
+}
+
+.header_text{
+    text-align: center;
+    background: linear-gradient(
+    to right, 
+    hsl(194, 100%, 62%), 
+    rgb(172, 227, 248)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+
+}
+
+.header_text h1{
+    font-size: 40px;    
+}
+.header_text p{
+    
+}

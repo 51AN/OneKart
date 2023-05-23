@@ -13,7 +13,7 @@ import HomeManager from './Pages/HomeManager'
 import ProductManager from './Pages/ProductManager'
 import Cart from './Pages/Cart'
 import Orders from './Pages/Orders'
-
+import Profile from './Pages/Profile'
 function App() {
   //get user from localstorage
   const [user, setUser] = useState(null)
@@ -45,6 +45,7 @@ function App() {
         <Route exact path='/product-manager/:id' Component={ProductManager} />
         <Route exact path='/cart/' Component={Cart} />
         <Route exact path='/orders/' Component={Orders} />
+        <Route exact path="/profile/" Component={Profile}/>
       </Routes>
     </div>
   </Router>

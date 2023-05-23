@@ -81,7 +81,11 @@ function Cart() {
 
   return (
     <div>
-      <h1>My cart</h1>
+      <div className="inline_box">
+      <div className="text-box">
+        <h2>My Cart</h2>
+      </div>
+    </div>
       {data &&
           data.length>0?data.map((el, i) => {
             return (
@@ -93,20 +97,22 @@ function Cart() {
                     <p>{el.quantity}</p>
                     <button onClick={()=>handleDecrease(el.id)}>-</button>
                     <p>{el.price}</p>
-                    <button onClick={()=>handleDelete(el.id)}>Delete</button>
+                    <button className="add_button" onClick={()=>handleDelete(el.id)}>Delete</button>
                   </div>
                 </>
             )
         }) : <p>Cart is empty</p>
       }
       {totalAmountToPay && <div>
-        <h3>
-          Total Amount to pay
-        </h3>
+        <div className="inline_box">
+      <div className="text-box">
+        <h2>Total Amount to Pay</h2>
+      </div>
+    </div>
         <p>
           {totalAmountToPay}
         </p>
-        <button>Confirm Order</button></div>}
+        <button className="add_button">Confirm Order</button></div>}
     </div>
   )
 }

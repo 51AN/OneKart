@@ -2,6 +2,8 @@ import React, {useState, useEffect} from 'react'
 import axios from 'axios';
 import {Link} from 'react-router-dom'
 import "../style/Home.css"
+import hero from '../Components/Hero';
+import Hero from '../Components/Hero';
 
 function Home() {
     const [loggedInUser, setLoggedInUser] = useState(null)
@@ -48,22 +50,25 @@ function Home() {
   }, [])
 
   return (
-    <>
-    <div className="text-box">
-      <h1>This is the homepage</h1>
-      <h2>Top selling products</h2>
+  <>
+    <Hero/>
+    <div className="inline_box">
+      <div className="text-box">
+        <h2>Top selling products</h2>
+      </div>
     </div>
       <div className = "top-container">
-        {loggedInUser && <p>Welcome, {loggedInUser}!</p>}
+        {/* {loggedInUser && <p>Welcome, {loggedInUser}!</p>} */}
         
         {topsellingProductData &&
           topsellingProductData.length>0?topsellingProductData.map((el, i) => {
             return (
                 <>
-                <Link to={`/product/${el.id}`}>
+                <Link to={`/product/${el.id}`} className="link_color">
                   <div className = "top-selling">
-                    <img src={`http://localhost:5000/uploads/${el.image}`} alt='bla bla bla' style={{width:'400px', height:'400px'}}/>
-                    <p>{el.name}</p>
+                    <img className="ts_image" src={`http://localhost:5000/uploads/${el.image}`} alt='bla bla bla' style={{width:'200px', height:'200px'}}/>
+                    
+                    <h3>{el.name}</h3>
                     <p>{el.description}</p>
                   </div>
                 </Link>
@@ -72,27 +77,30 @@ function Home() {
         }) : ""
         }
       </div>
-        <div className="text-box">
-          <h2>All products</h2>
+        <div className="inline_box">
+          <div className="text-box">
+            <h2>All products</h2>
+          </div>
         </div>
-      <div className="all-container">
+
+        <div className="all-container">
         {data &&
           data.length>0?data.map((el, i) => {
             return (
                 <>
-                <Link to={`/product/${el.id}`}>
-                  <div className = "all-products">
-                    <img src={`http://localhost:5000/uploads/${el.image}`} alt='bla bla bla' style={{width:'400px', height:'400px'}}/>
-                    <p>{el.name}</p>
-                    <p>{el.description}</p>
-                  </div>
-                </Link>
+                  <Link to={`/product/${el.id}`} className="link_color">
+                    <div className = "all-products">
+                      <img className="all_image" src={`http://localhost:5000/uploads/${el.image}`} alt='bla bla bla' style={{width:'200px', height:'200px'}}/>
+                      <h3>{el.name}</h3>
+                      <p>{el.description}</p>
+                    </div>
+                  </Link>
                 </>
             )
         }) : ""
         }
-      </div>
-    </>
+        </div>
+   </>
   )
 }
 

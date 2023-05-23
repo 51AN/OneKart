@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
+import '../style/Product.css'
 
 function Product() {
   const {id} = useParams()
@@ -42,19 +43,27 @@ function Product() {
   if(product){
       data = (
           <>
-          <h1>{product.name}</h1>
-          <img src={`http://localhost:5000/uploads/${product.image}`} alt='bla bla bla' style={{width:'400px', height:'400px'}}/>
-          <p>Description: {product.description}</p>
-          <p>Price: {product.price}</p>
+          <div className="pro_container">
+            <div className="pro_image">
+                <img src={`http://localhost:5000/uploads/${product.image}`} alt='bla bla bla' style={{width:'400px', height:'400px'}}/>
+            </div>
+            <div className="pro_details">
+                <h1>{product.name}</h1>
+                <h4>{product.description}</h4>
+                <h3>Price: {product.price} ৳BDT</h3>
+            </div>
+            
+          </div>
+          
           </>
       )
   }
   else
       data = "No product!"
   return (
-    <div>
+    <div className="onClick_container">
       <p>{data}</p>
-      <button onClick={addProductToCart}>Add to cart</button>
+      <button className="add_button" onClick={addProductToCart}>Add to cart</button>
       {msg && <p>{msg}</p>}
     </div>
   )

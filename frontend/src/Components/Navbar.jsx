@@ -57,7 +57,7 @@ function Navbar({user, role}) {
                         <li>
                             <Link to="/">Home</Link>
                         </li>
-                        <li><Link>{user}</Link></li>
+                        <li><Link to="/profile/">{user}</Link></li>
                         <li><Link to="/cart/">Cart({total})</Link></li>
                         <li><Link to="/orders/">Orders</Link></li>
                         <li onClick={Logout}><Link>Logout</Link></li>
