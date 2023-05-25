@@ -55,3 +55,7 @@
   box-shadow: none;
   transform: translateY(0);
 }
+
+.confirm_message{
+  color: rgb(0, 212, 0);
+}
