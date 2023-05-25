@@ -14,6 +14,7 @@ import ProductManager from './Pages/ProductManager'
 import Cart from './Pages/Cart'
 import Orders from './Pages/Orders'
 import Profile from './Pages/Profile'
+import Checkout from './Pages/Checkout'
 function App() {
   //get user from localstorage
   const [user, setUser] = useState(null)
@@ -44,6 +45,7 @@ function App() {
         <Route exact path='/product/:id' Component={Product} />
         <Route exact path='/product-manager/:id' Component={ProductManager} />
         <Route exact path='/cart/' Component={Cart} />
+        <Route exact path='/checkout/' Component={Checkout} />
         <Route exact path='/orders/' Component={Orders} />
         <Route exact path="/profile/" Component={Profile}/>
       </Routes>

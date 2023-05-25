@@ -8,19 +8,11 @@ function HomeManager() {
     const [data, setData] = useState([]);
 
     const getUserData = async () => {
-        const res = await axios.get("/products/", {
-            headers: {
-                "Content-Type": "application/json"
+        await axios.get(`products/getbranchproducts/`).then(
+            (response) => {
+                setData(response.data)
             }
-        });
-
-        if (res.data.status === 201) {
-            console.log("data get");
-            setData(res.data.data)
-
-        } else {
-            console.log("error")
-        }
+        ).catch((error) => {console.log(error)})
     }
 
     useEffect(()=>{
