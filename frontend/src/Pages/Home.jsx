@@ -10,9 +10,15 @@ function Home() {
 
     const [data, setData] = useState([])
     const [topsellingProductData, setTopsellingProductData] = useState(null)
+    const [selectedCatagory, setSelectedCatagory] = useState(1)
+
+    const handleSelectionChange = async(event) => {
+      setSelectedCatagory(event.target.value)
+
+    }
 
     const getUserData = async () => {
-        const res = await axios.get("/products/", {
+        const res = await axios.get(`/products/${selectedCatagory}`, {
             headers: {
                 "Content-Type": "application/json"
             }
@@ -28,7 +34,7 @@ function Home() {
     }
 
     const getTopSellingProducts = async () => {
-        await axios.get("/products/topselling/").then(
+        await axios.get(`/products/topselling/${selectedCatagory}`).then(
             (response)=>{
                 setTopsellingProductData(response.data.data)
             }
@@ -47,10 +53,16 @@ function Home() {
     useEffect(() => {
       getUserData()
       getTopSellingProducts()
-  }, [])
+  }, [selectedCatagory])
 
   return (
   <>
+    <nav>
+    <select value={selectedCatagory} onChange={handleSelectionChange}>
+          <option value="1">Dhaka</option>
+          <option value="2">Mymensingh</option>
+        </select>
+    </nav>
     <Hero/>
     <div className="inline_box">
       <div className="text-box">

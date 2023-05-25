@@ -1,7 +1,8 @@
 const express = require('express')
 const multer = require('multer');
 const connection = require('../config/dbconnect');
-const { getMyProduct, updateProduct, deleteProduct, topSellingProducts } = require('../controllers/productController')
+const { getMyProduct, updateProduct, deleteProduct, topSellingProducts, getBranchProducts } = require('../controllers/productController');
+const { route } = require('./userRoutes');
 const router = express.Router()
 
 var imgconfig = multer.diskStorage({
@@ -49,9 +50,9 @@ router.post("/",upload.single("photo"),(req,res)=>{
     }
 });
 
-router.get("/",(req,res)=>{
+router.get("/:id",(req,res)=>{
     try {
-        connection.query("SELECT * FROM products",(err,result)=>{
+        connection.query(`SELECT * FROM products WHERE bid = ${req.params.id}`,(err,result)=>{
             if(err){
                 console.log("error")
             }else{
@@ -64,7 +65,8 @@ router.get("/",(req,res)=>{
     }
 });
 
-router.get("/topselling/", topSellingProducts)
+router.get("/topselling/:id", topSellingProducts)
+router.get("/getbranchproducts/", getBranchProducts)
 router.get("/myproduct/:id", getMyProduct)
 router.put("/myproduct/:id", updateProduct)
 router.delete("/myproduct/:id", deleteProduct)

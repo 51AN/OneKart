@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 function Cart() {
   const [data, setData] = useState(null)
@@ -112,7 +113,7 @@ function Cart() {
         <p>
           {totalAmountToPay}
         </p>
-        <button className="add_button">Confirm Order</button></div>}
+        <Link to="/checkout/"><button className="add_button">Checkout</button></Link>  </div>}
     </div>
   )
 }
