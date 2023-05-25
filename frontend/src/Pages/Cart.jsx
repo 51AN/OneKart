@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
+import '../style/Cart.css'
 import { Link } from 'react-router-dom'
 
 function Cart() {
@@ -92,17 +93,30 @@ function Cart() {
             return (
                 <>
                   <div>
-                    <img src={`http://localhost:5000/uploads/${el.image}`} alt='bla bla bla' style={{width:'100px', height:'100px'}}/>
-                    <p>{el.name}</p>
-                    <button onClick={()=>handleIncrease(el.id)}>+</button>
-                    <p>{el.quantity}</p>
-                    <button onClick={()=>handleDecrease(el.id)}>-</button>
-                    <p>{el.price}</p>
+                    <div className="cart_content">
+                      <div className="cart_image">
+                        <img src={`http://localhost:5000/uploads/${el.image}`} alt='bla bla bla' style={{width:'200px', height:'200px'}}/>
+                      </div>
+                      <div className="cart_details">
+                        <h2>{el.name}</h2>
+                        <div >
+                          <button className="plus_button" onClick={()=>handleIncrease(el.id)}>+</button>
+                        </div>
+                        <div className="quantity">
+                          <p>{el.quantity}</p>
+                        </div>
+                        <div>
+                          <button  className="plus_button" onClick={()=>handleDecrease(el.id)}>-</button>
+                        </div>
+                        <p>{el.price}</p>
+                      </div>
+                    </div>
+                    
                     <button className="add_button" onClick={()=>handleDelete(el.id)}>Delete</button>
                   </div>
                 </>
             )
-        }) : <p>Cart is empty</p>
+        }) : <p className="cart_empty">Cart is empty</p>
       }
       {totalAmountToPay && <div>
         <div className="inline_box">
@@ -110,7 +124,7 @@ function Cart() {
         <h2>Total Amount to Pay</h2>
       </div>
     </div>
-        <p>
+        <p className="cart_content">
           {totalAmountToPay}
         </p>
         <Link to="/checkout/"><button className="add_button">Checkout</button></Link>  </div>}
