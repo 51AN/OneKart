@@ -1,6 +1,9 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
+import '../style/Product.css'
+import '../style/Cart.css'
+import '../style/form.css'
 
 function ProductManager() {
     const {id} = useParams()
@@ -79,13 +82,20 @@ function ProductManager() {
     if(product){
         data = (
             <>
-            <h1>{product.name}</h1>
-            <img src={`http://localhost:5000/uploads/${product.image}`} alt='bla bla bla' style={{width:'400px', height:'400px'}}/>
-            <p>Description: {product.description}</p>
-            <p>Price: {product.price}</p>
-            <p>Total sales: {product.sellcount}</p>
-            <p>Quantity: {product.quantity}</p>
-            <p>Earning: {product.price * product.sellcount}</p>
+            <div className="pro_container">
+            <div className="pro_image">
+                <img src={`http://localhost:5000/uploads/${product.image}`} alt='bla bla bla' style={{width:'400px', height:'400px'}}/>
+            </div>
+            <div className="pro_details">
+                <h1>{product.name}</h1>
+                <h4>{product.description}</h4>
+                <h3>Price: {product.price} ৳BDT</h3>
+                <p>Total sales: {product.sellcount}</p>
+                <p>Quantity: {product.quantity}</p>
+                <p>Earning: {product.price * product.sellcount}</p>
+            </div>
+            
+          </div>
             </>
         )
     }
@@ -95,36 +105,67 @@ function ProductManager() {
   return (
     <div>
         {data}
-        <h1>Update product info</h1>
+        <div className="inline_box">
+        <div className="text-box">
+            <h2>Update Product Info</h2>
+        </div>
+        </div>
+        
         {msg && <p>{msg}</p>}
-        <form onSubmit={handleSubmit}>
-            <label>
-                Product name:
-                <input type="text" value={name} onChange={handleNameChange}/>
-            </label>
-            <label>
-                Price:
-                <input type="text" value={price} onChange={handlePriceChange}/>
-            </label>
-            <label>
-                Description:
-                <input type="text" value={description} onChange={handleDescriptionChange}/>
-            </label>
-            <label>
-                Quantity:
-                <input type="text" value={quantity} onChange={handleQuantityChange}/>
-            </label>
-            <label>
-                Availability:
-                <input type="text" value={availability} onChange={handleAvailabilityChange}/>
-            </label>
-            <br />
-            <button type='submit'>
+  
+
+        {/* <form onSubmit={handleSubmit}>
+          
+
+
+            
+        </form> */}
+
+<div className="form_container">
+        <form class="form" style={{width:'700px', height:'550px'}}>
+
+        <div className="input-container">
+                <input id="product_name" type="text" className="input" placeholder=" " value={name} onChange={handleNameChange}/>
+                <div className="cut"></div>
+                <label for="product_name" className="placeholder"> Product Name </label>
+        </div>
+      
+
+            <div className="input-container">
+                <input id="price" type="text" className="input" placeholder=" " value={price} onChange={handlePriceChange}/>
+                <div className="cut"></div>
+                <label for="price" className="placeholder"> Price </label>
+            </div>
+
+            <div className="input-container">
+                <input id="description" type="text" className="input" placeholder=" " value={description} onChange={handleDescriptionChange}/>
+                <div className="cut"></div>
+                <label for="description" className="placeholder"> Description </label>
+            </div>
+
+            <div className="input-container">
+                <input id="quantity" type="text" className="input" placeholder=" " value={quantity} onChange={handleQuantityChange}/>
+                <div className="cut"></div>
+                <label for="quantity" className="placeholder"> Quantity </label>
+            </div>
+
+            <div className="input-container">
+                <input id="availability" type="text" className="input" placeholder=" " value={availability} onChange={handleAvailabilityChange}/>
+                <div className="cut"></div>
+                <label for="availability" className="placeholder"> Availability </label>
+            </div>
+            <button type='submit' className="update_button">
                 Update
             </button>
-        </form>
-        <h1>Delete Product</h1>
-        <button onClick={deleteProduct}>Delete</button>
+    </form>
+</div>
+        
+<div className="inline_box">
+        <div className="text-box">
+            <h2>Delete Product</h2>
+        </div>
+        </div>
+        <button className="add_button" onClick={deleteProduct}>Delete</button>
     </div>
   )
 }

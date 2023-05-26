@@ -80,7 +80,11 @@ const UploadAndDisplayImage = () => {
 
   return (
     <div>
-      <h1>Upload and Display Image usign React Hook's</h1>
+      <div className="inline_box">
+      <div className="text-box">
+        <h2>Upload and Display Image usign React Hook's</h2>
+      </div>
+    </div>
       {msg && <p>{msg}</p>}
       {selectedImage && (
         <div>
@@ -95,8 +99,8 @@ const UploadAndDisplayImage = () => {
       )}
 
       <br />
-      <br />
 
+{/* 
       <form onSubmit={handleSubmit}>
         <label>
             Name:
@@ -108,11 +112,7 @@ const UploadAndDisplayImage = () => {
         </label>
         <label>
           image:
-          <input
-          type="file"
-          name="myImage"
-          onChange={handleImage}
-        />
+          <input type="file" name="myImage" onChange={handleImage}/>
         </label>
         <label>
             Price:
@@ -130,7 +130,54 @@ const UploadAndDisplayImage = () => {
             <button type='submit'>
                 Submit
             </button>
-      </form>
+      </form> */}
+
+  <div className="form_container">
+        <form class="form" onSubmit={handleSubmit} style={{width:'800px', height:'610px'}}>
+
+        <div className="input-container">
+                <input id="name_enter" type="text" className="input" placeholder=" " value={name} onChange={handleNameChange}/>
+                <div className="cut"></div>
+                <label for="name_enter" className="placeholder"> Name </label>
+        </div>
+
+        <div className="input-container">
+            <input id="description" type="text" className="input" placeholder=" " value={description} onChange={handleDescriptionChange}/>
+            <div className="cut"></div>
+            <label for="description" className="placeholder"> Description </label>
+        </div>
+        
+      
+
+            <div className="input-container">
+                <input id="price-enter" type="text" className="input" placeholder=" " value={price} onChange={handlePriceChange}/>
+                <div className="cut"></div>
+                <label for="price-enter" className="placeholder"> Price </label>
+            </div>
+
+            <div className="input-container">
+                <input id="quantity-enter" type="text" className="input" placeholder=" " value={quantity} onChange={handleQuantityChange}/>
+                <div className="cut"></div>
+                <label for="quantity-enter" className="placeholder"> Quantity </label>
+            </div>
+
+            <div className="input-container">
+                <input id="availability-enter" type="text" className="input" placeholder=" " value={availability} onChange={handleAvailabilityChange}/>
+                <div className="cut"></div>
+                <label for="availability-enter" className="placeholder"> Availability </label>
+            </div>
+        <div className="input-container">
+            <input id="image_enter"  type="file" className="input" placeholder=" " name="myImage" onChange={handleImage}/>
+            <div className="cut"></div>
+            <label for="image_enter" className="placeholder">  </label>
+        </div>
+            <button type='submit' className="update_button">
+                Submit
+            </button>
+    </form>
+ </div>
+
+
     </div>
   );
 };

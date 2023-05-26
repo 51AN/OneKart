@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios';
 import {Link} from 'react-router-dom'
+import '../style/Home.css'
 
 function HomeManager() {
     const [loggedInUser, setLoggedInUser] = useState(null)
@@ -28,24 +29,31 @@ function HomeManager() {
 
   return (
     <div>
-        <h1>Homepage for manager boiiiii</h1>
-        {loggedInUser && <p>Welcome, {loggedInUser}!</p>}
-        <h3>My products</h3>
+
+        {/* {loggedInUser && <p>Welcome, {loggedInUser}!</p>} */}
+        <div className="inline_box">
+          <div className="text-box">
+            <h2>My Products</h2>
+          </div>
+        </div>
+        <div className="all-container">
+
         {
           data.length>0?data.map((el, i) => {
             return (
-                <>
-                <Link to={`/product-manager/${el.id}`}>
-                  <div>
-                    <img src={`http://localhost:5000/uploads/${el.image}`} alt='bla bla bla' style={{width:'400px', height:'400px'}}/>
-                    <p>{el.name}</p>
-                    <p>{el.description}</p>
-                  </div>
-                </Link>
+              <>
+                <Link to={`/product-manager/${el.id}`} className="link_color">
+                <div className = "all-products">
+                      <img className="all_image" src={`http://localhost:5000/uploads/${el.image}`} alt='bla bla bla' style={{width:'200px', height:'200px'}}/>
+                      <h3>{el.name}</h3>
+                      <p>{el.description}</p>
+                    </div>
+                  </Link>
                 </>
             )
-        }) : ""
+          }) : ""
         }
+        </div>
     </div>
   )
 }

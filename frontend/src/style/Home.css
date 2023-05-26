@@ -1,11 +1,11 @@
 .top-container{
-    width: 94%;
-    height: 90%;
     padding: 2%;
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    gap: 40px;
     flex-wrap: wrap;
     overflow-y: auto;
-    justify-content:space-between;
+    width: 94.2%;
 
 }
 
@@ -14,9 +14,10 @@
     padding: 2%;
     display: grid;
     grid-template-columns: repeat(5,1fr);
-    gap: 80px;
+    gap: 40px;
     flex-wrap: wrap;
     overflow-y: auto;
+    width: 94.2%;
     
 
 }

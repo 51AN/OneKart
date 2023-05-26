@@ -50,20 +50,20 @@ router.post("/",upload.single("photo"),(req,res)=>{
     }
 });
 
-router.get("/:id",(req,res)=>{
-    try {
-        connection.query(`SELECT * FROM products WHERE bid = ${req.params.id}`,(err,result)=>{
-            if(err){
-                console.log("error")
-            }else{
-                console.log("data get")
-                res.status(201).json({status:201,data:result})
-            }
-        })
-    } catch (error) {
-        res.status(422).json({status:422,error})
-    }
-});
+// router.get("/:id",(req,res)=>{
+//     try {
+//         connection.query(`SELECT * FROM products WHERE bid = ${req.params.id}`,(err,result)=>{
+//             if(err){
+//                 console.log("error")
+//             }else{
+//                 console.log("data get")
+//                 res.status(201).json({status:201,data:result})
+//             }
+//         })
+//     } catch (error) {
+//         res.status(422).json({status:422,error})
+//     }
+// });
 
 router.get("/topselling/:id", topSellingProducts)
 router.get("/getbranchproducts/", getBranchProducts)

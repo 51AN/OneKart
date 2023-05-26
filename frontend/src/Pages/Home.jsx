@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import axios from 'axios';
 import {Link} from 'react-router-dom'
 import "../style/Home.css"
+import "../style/Hero.css"
 import hero from '../Components/Hero';
 import Hero from '../Components/Hero';
 
@@ -57,13 +58,30 @@ function Home() {
 
   return (
   <>
-    <nav>
+    {/* <nav>
     <select value={selectedCatagory} onChange={handleSelectionChange}>
           <option value="1">Dhaka</option>
           <option value="2">Mymensingh</option>
         </select>
-    </nav>
-    <Hero/>
+    </nav> */}
+
+    {/* hero part  */}
+    <div className="container_hero">
+            <div className="header_text">
+                <h1>Welcome to OneKart</h1>
+            </div>
+            <div className="header_selection">
+              <h3>Select Branch</h3>
+              <div className="selectPad">
+              <select className="header_select" value={selectedCatagory} onChange={handleSelectionChange}>
+                    <option value="1">Dhaka</option>
+                    <option value="2">Mymensingh</option>
+                </select>
+              </div>
+                
+            </div>
+    </div>
+
     <div className="inline_box">
       <div className="text-box">
         <h2>Top selling products</h2>
