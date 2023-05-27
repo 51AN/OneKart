@@ -19,7 +19,7 @@ function Home() {
     }
 
     const getUserData = async () => {
-        const res = await axios.get(`/products/${selectedCatagory}`, {
+        const res = await axios.get(`/products/all/${selectedCatagory}`, {
             headers: {
                 "Content-Type": "application/json"
             }
@@ -99,7 +99,7 @@ function Home() {
                     <img className="ts_image" src={`http://localhost:5000/uploads/${el.image}`} alt='bla bla bla' style={{width:'200px', height:'200px'}}/>
                     
                     <h3>{el.name}</h3>
-                    <p>{el.description}</p>
+                    <p>{el.price} ৳BDT</p>
                   </div>
                 </Link>
                 </>
@@ -122,7 +122,8 @@ function Home() {
                     <div className = "all-products">
                       <img className="all_image" src={`http://localhost:5000/uploads/${el.image}`} alt='bla bla bla' style={{width:'200px', height:'200px'}}/>
                       <h3>{el.name}</h3>
-                      <p>{el.description}</p>
+                      <p>{el.price} ৳BDT</p>
+                      
                     </div>
                   </Link>
                 </>
