@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 25, 2023 at 02:13 PM
+-- Generation Time: May 28, 2023 at 01:37 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -76,14 +76,6 @@ CREATE TABLE `cart_items` (
   `price` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `cart_items`
---
-
-INSERT INTO `cart_items` (`id`, `cartid`, `pid`, `quantity`, `price`) VALUES
-(1, 4, 17, 5, 200),
-(3, 4, 32, 5, 500);
-
 -- --------------------------------------------------------
 
 --
@@ -100,19 +92,20 @@ CREATE TABLE `orders` (
   `district` varchar(100) NOT NULL,
   `address` varchar(100) NOT NULL,
   `zipcode` varchar(100) NOT NULL,
-  `status` varchar(100) NOT NULL DEFAULT 'Pending'
+  `status` varchar(100) NOT NULL DEFAULT 'Pending',
+  `time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`id`, `cartid`, `pid`, `quantity`, `price`, `bid`, `district`, `address`, `zipcode`, `status`) VALUES
-(28, 3, 34, 1, 30, 1, 'Mymensingh', 'Maskanda', '1234', 'Pending'),
-(29, 3, 38, 2, 60, 1, 'Mymensingh', 'Maskanda', '1234', 'Pending'),
-(30, 3, 43, 1, 300, 2, 'Mymensingh', 'Maskanda', '1234', 'Pending'),
-(31, 3, 35, 1, 50, 1, 'Gazipur', 'IUT', '1704', 'Pending'),
-(32, 3, 35, 1, 50, 1, 'Mymensingh', 'Maskanda', '1234', 'Pending');
+INSERT INTO `orders` (`id`, `cartid`, `pid`, `quantity`, `price`, `bid`, `district`, `address`, `zipcode`, `status`, `time`) VALUES
+(39, 3, 35, 1, 50, 1, 'Mymensingh', 'Maskanda', '1234', 'Complete', '2023-05-28 08:51:19'),
+(40, 3, 36, 1, 30, 1, 'Mymensingh', 'Maskanda', '1234', 'Complete', '2023-05-28 11:34:06'),
+(41, 3, 43, 1, 300, 2, 'Mymensingh', 'Maskanda', '1234', 'Pending', '2023-05-27 15:09:45'),
+(42, 4, 17, 5, 200, 1, 'Dhaka', 'Uttara', '2233', 'Complete', '2023-05-28 11:34:09'),
+(43, 4, 32, 5, 500, 1, 'Dhaka', 'Uttara', '2233', 'Complete', '2023-05-28 08:55:59');
 
 -- --------------------------------------------------------
 
@@ -137,11 +130,11 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `description`, `image`, `price`, `sellcount`, `availability`, `quantity`, `bid`) VALUES
-(17, 'kitkat', 'choco', 'image-1680535123987.R (2).jpg', 40, 5, 'available', 70, 1),
-(32, 'snickers', 'good choco', 'image-1681560420948.R.jpg', 100, 4, 'Available', 50, 1),
+(17, 'kitkat', 'choco', 'image-1680535123987.R (2).jpg', 40, 10, 'available', 65, 1),
+(32, 'snickers', 'good choco', 'image-1681560420948.R.jpg', 100, 9, 'Available', 45, 1),
 (34, 'cocacola', 'cola', 'image-1682107940175.coke.jpg', 30, 10, 'available', 200, 1),
-(35, 'ice crean', 'ice-cream', 'image-1682107977956.ice-cream.jpg', 50, 9, 'available', 250, 1),
-(36, 'pepsi', 'pepsi', 'image-1682108001687.pepsi.jpg', 30, 8, 'available', 250, 1),
+(35, 'ice crean', 'ice-cream', 'image-1682107977956.ice-cream.jpg', 50, 13, 'available', 246, 1),
+(36, 'pepsi', 'pepsi', 'image-1682108001687.pepsi.jpg', 30, 9, 'available', 249, 1),
 (37, 'lays', 'chips', 'image-1682108020690.lays.jpg', 30, 7, 'available', 250, 1),
 (38, 'potato chips', 'chips', 'image-1682108037479.potato.jpg', 30, 15, 'available', 250, 1),
 (39, 'dark fantasy', 'biscuit', 'image-1682108056990.dark.jpg', 30, 6, 'available', 250, 1),
@@ -176,7 +169,7 @@ INSERT INTO `users` (`id`, `username`, `email`, `password`, `address`, `role`) V
 (8, 'Akash', 'akash@gmail.com', 'asdf', '', ''),
 (12, 'assad', 'assad@gmail.com', '$2a$10$WYTRWEj7z7TF3RfxrxDbi.cqws8pcoZNZbaZK5kkverZQTn90bM4i', '', ''),
 (13, 'nazmul', 'nazmul@gmail.com', '$2a$10$CIFtdqREA/eAOuIFChPPGeljnN0CwZ42IxFZaE1G1x/HiFOWEaVq6', '', ''),
-(15, 'wanderer', 'wan@gmail.com', '$2a$10$Jmo8Vo6Oi1xoso6VY8eBdOAaRT.PWl8au43p5g7NlWrcic4/cAhkS', '', 'manager'),
+(15, 'wanderer', 'wan@gmail.com', '$2a$10$Jmo8Vo6Oi1xoso6VY8eBdOAaRT.PWl8au43p5g7NlWrcic4/cAhkS', 'Dhaka', 'manager'),
 (16, 'childe', 'childe@gmail.com', '$2a$10$C27zdeQQ5Yh4hyk7ssm73uPZArn8bpqn7QebqTmpJilonGZDHlINq', 'Mym', 'customer'),
 (21, 'zhongli', 'zhongli@gmail.com', '$2a$10$I4tDvQi9tpw4hPlQpuFSO.JJb0tSJJXtv7uInFFUkX77dlz6NvFNK', 'DHK', 'customer'),
 (22, 'nahida', 'nahida@gmail.com', '$2a$10$tlfr4371E9xT9nclgj28.e2tgoDgpjM7NAif99OG2TgGZaQBNHFY2', 'CTG', 'customer'),
@@ -251,13 +244,13 @@ ALTER TABLE `carts`
 -- AUTO_INCREMENT for table `cart_items`
 --
 ALTER TABLE `cart_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `products`
