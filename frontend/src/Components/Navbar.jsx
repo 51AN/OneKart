@@ -42,7 +42,10 @@ function Navbar({user, role}) {
                     <li>
                         <Link to="/home-manager">Home</Link>
                     </li>
-                    <li><Link>{user}</Link></li>
+                    <li><Link to="/profile-manager/">{user}</Link></li>
+                    <li>
+                        <Link to="/orders-manager/">Orders</Link>
+                    </li>
                     <li>
                         <Link to="/upload">upload</Link>
                     </li>
