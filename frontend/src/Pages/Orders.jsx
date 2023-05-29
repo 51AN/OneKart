@@ -39,7 +39,11 @@ function Orders() {
   },[])
   return (
     <div>
-      <h1>My orders</h1>
+      <div className="inline_box">
+          <div className="text-box">
+            <h2>My Orders</h2>
+          </div>
+        </div>
       {orderData &&
           orderData.length>0?orderData.map((el, i) => {
             return (
