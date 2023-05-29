@@ -47,7 +47,7 @@ function Navbar({user, role}) {
                         <Link to="/orders-manager/">Orders</Link>
                     </li>
                     <li>
-                        <Link to="/upload">upload</Link>
+                        <Link to="/upload">Upload</Link>
                     </li>
                     <li onClick={Logout}><Link>Logout</Link></li>
                 </ul>

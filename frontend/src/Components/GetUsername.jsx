@@ -18,7 +18,7 @@ function GetUsername(props) {
     },[])
 
   return (
-    <div><p>From: {name}</p></div>
+    <div><p> <b>From :</b> {name}</p></div>
   )
 }
 

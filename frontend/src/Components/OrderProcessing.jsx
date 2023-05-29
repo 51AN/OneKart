@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React from 'react'
 import { useState, useEffect } from 'react'
-
+import '../style/OrderPro.css'
 function OrderProcessing(props) {
     const [selectedCatagory, setSelectedCatagory] = useState(null)
     const handleSelectionChange = async(event) => {
@@ -30,7 +30,7 @@ function OrderProcessing(props) {
     },[])
 
   return (
-    <div>
+    <div className="box">
         <select value={selectedCatagory} onChange={handleSelectionChange}>
             {
                 selectedCatagory === 'Pending' ? (

@@ -2,8 +2,11 @@ import React from 'react'
 import { useState } from 'react'
 import axios from 'axios'
 import { useEffect } from 'react'
-
+import '../style/Order.css'
 function Orders() {
+  const completeStyle ={
+    color : "green"
+  }
   const [orderData, setOrderData] = useState(null)
 
   const getOrderData = async () => {
@@ -44,22 +47,27 @@ function Orders() {
             <h2>My Orders</h2>
           </div>
         </div>
-      {orderData &&
+        <div className="order-container">
+        {orderData &&
           orderData.length>0?orderData.map((el, i) => {
             return (
               <>
-                <div>
-                  <p>Product name: {el.pname}</p>
-                  <p>QTY: {el.quantity}</p>
-                  <p>Total price: {el.price}</p>
-                  <p>Address: {el.address},{el.district}</p>
-                  <p>Order status: {el.status}</p>
-                  <p>Order time: {formatDate(el.time)} {formatTime(el.time)}</p>
+                <div className="order-content">
+                  <p><b>Product name : </b>  {el.pname}</p>
+                  <p><b>QTY :</b>  {el.quantity}</p>
+                  <p><b>Total price :</b>  {el.price}</p>
+                  <p><b>Address :</b>  {el.address}, {el.district}</p>
+                  {el.status === "Complete" && <p><b>Order status :</b> <i  style={completeStyle}> {el.status}</i> </p>}
+                  {el.status === "Pending" && <p><b>Order status :</b>  {el.status}</p>}
+                  <p><b>Order time :</b> {formatTime(el.time)} - {formatDate(el.time)}</p>
                 </div>
               </>
             )
           }) : ""
         }
+        </div>
+      
+
     </div>
   )
 }
