@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const UploadAndDisplayImage = () => {
 
   const [selectedImage, setSelectedImage] = useState(null);
@@ -43,13 +44,11 @@ const UploadAndDisplayImage = () => {
 
     await axios.post("/products/", formData, config).then(
       (response)=>{
-        setMsg("Product uploaded successfully")
-        setTimeout(() => {
-          setMsg('')
-        }, 2000)
+        toast.success("Product uploaded successfully")
+        
       }
     ).catch((error)=>{
-      setMsg("An error occured while uploading")
+      toast.error("An error occured while uploading")
     })
   }
 
@@ -82,11 +81,11 @@ const UploadAndDisplayImage = () => {
     <div>
       <div className="inline_box">
       <div className="text-box">
-        <h2>Upload and Display Image usign React Hook's</h2>
+        <h2>Upload Product</h2>
       </div>
     </div>
-      {msg && <p>{msg}</p>}
-      {selectedImage && (
+      {/* {msg && <p>{msg}</p>} */}
+      {/* {selectedImage && (
         <div>
           <img
             alt="not found"
@@ -96,7 +95,7 @@ const UploadAndDisplayImage = () => {
           <br />
           <button onClick={() => setSelectedImage(null)}>Remove</button>
         </div>
-      )}
+      )} */}
 
       <br />
 
@@ -175,6 +174,18 @@ const UploadAndDisplayImage = () => {
                 Submit
             </button>
     </form>
+    <ToastContainer
+      position="bottom-center"
+      autoClose={5000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+      theme="light"
+    />
  </div>
 
 

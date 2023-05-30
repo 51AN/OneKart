@@ -2,6 +2,9 @@ import axios from 'axios'
 import React from 'react'
 import { useState } from 'react'
 import '../style/Checkout.css'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 function Checkout() {
     const [district, setDistrict] = useState(null)
     const [address, setAddress] = useState(null)
@@ -23,9 +26,9 @@ function Checkout() {
 
         await axios.post(`/orders/createOrders/`, {district, address, zipcode}).then(
             (response) => {
-                setMsg(response.data.msg)
+                toast.success(response.data.msg)
             }
-        ).catch((error) => {console.log(error)})
+        ).catch((error) => {toast.error(error)})
     }
   return (
       <div>
@@ -63,7 +66,20 @@ function Checkout() {
             Confirm Order
             </button>
     </form>
-    {msg && <p>{msg}</p>}
+    {/* {msg && <p>{msg}</p>} */}
+    <ToastContainer
+        position="bottom-center"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+    />
+    
  </div>
 
 

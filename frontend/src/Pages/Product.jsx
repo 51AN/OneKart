@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import '../style/Product.css'
+import { toast, ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 
 function Product() {
   const {id} = useParams()
@@ -29,10 +31,8 @@ function Product() {
   const addProductToCart = async()=>{
     await axios.post('/cart/', {pid:id, perunitprice:price}).then(
         (response)=>{
-            setMsg(response.data.msg)
-            setTimeout(() => {
-                setMsg('')
-              }, 2000)
+            toast.success(response.data.msg)
+          
         }
     ).catch((error)=>{
         console.log(error)
@@ -64,7 +64,19 @@ function Product() {
     <div className="onClick_container">
       <p>{data}</p>
       <button className="add_button" onClick={addProductToCart}>Add to cart</button>
-      {msg && <p>{msg}</p>}
+      {/* {msg && <p>{msg}</p>} */}
+    <ToastContainer
+        position="bottom-center"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        />
     </div>
   )
 }

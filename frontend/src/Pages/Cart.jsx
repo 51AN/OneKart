@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import '../style/Cart.css'
 import { Link } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify';
 
 function Cart() {
   const [data, setData] = useState(null)

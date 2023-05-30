@@ -4,6 +4,9 @@ import { useParams, useNavigate } from 'react-router-dom'
 import '../style/Product.css'
 import '../style/Cart.css'
 import '../style/form.css'
+import { toast, ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function ProductManager() {
     const {id} = useParams()
@@ -56,10 +59,10 @@ function ProductManager() {
             quantity
         }
         await axios.put(`/products/myproduct/${id}`, pdata).then((response)=>{
-            setMsg("Product information updated successfully")
-            window.location.reload()}
+            toast.success("Product information updated successfully")
+            }
         ).catch((error)=>{
-            setMsg("Update failed")
+            toast.error("Update failed")
         })
     }
 
@@ -111,7 +114,7 @@ function ProductManager() {
         </div>
         </div>
         
-        {msg && <p>{msg}</p>}
+        {/* {msg && <p>{msg}</p>} */}
   
 
         {/* <form onSubmit={handleSubmit}>
@@ -158,6 +161,19 @@ function ProductManager() {
                 Update
             </button>
     </form>
+    <ToastContainer
+        position="bottom-center"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        />
+
 </div>
         
 <div className="inline_box">
