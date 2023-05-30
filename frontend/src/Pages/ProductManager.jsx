@@ -16,7 +16,6 @@ function ProductManager() {
     const [availability, setAvailability] = useState(null)
     const [price, setPrice] = useState(null)
     const [quantity, setQuantity] = useState(null)
-    const [msg, setMsg] = useState(null)
 
     const history = useNavigate()
 
@@ -60,6 +59,7 @@ function ProductManager() {
         }
         await axios.put(`/products/myproduct/${id}`, pdata).then((response)=>{
             toast.success("Product information updated successfully")
+            getProductData()
             }
         ).catch((error)=>{
             toast.error("Update failed")
@@ -125,7 +125,7 @@ function ProductManager() {
         </form> */}
 
 <div className="form_container">
-        <form class="form" style={{width:'700px', height:'550px'}}>
+        <form class="form" style={{width:'700px', height:'550px'}} onSubmit={handleSubmit}>
 
         <div className="input-container">
                 <input id="product_name" type="text" className="input" placeholder=" " value={name} onChange={handleNameChange}/>

@@ -12,10 +12,26 @@ function Home() {
     const [data, setData] = useState([])
     const [topsellingProductData, setTopsellingProductData] = useState(null)
     const [selectedCatagory, setSelectedCatagory] = useState(1)
+    const [search, setSearch] = useState(null)
 
     const handleSelectionChange = async(event) => {
       setSelectedCatagory(event.target.value)
 
+    }
+    const handlesearchChange = (event)=>{
+      setSearch(event.target.value)
+    }
+
+    const handleSearchSubmit = async(event)=>{
+      event.preventDefault()
+      await axios.post(`/products/searchProducts/`, {pname: search, branch: selectedCatagory}).then(
+        (response)=>{
+          setData(response.data.data)
+          setTopsellingProductData('')
+        }
+      ).catch((error)=>{
+        console.log(error)
+      })
     }
 
     const getUserData = async () => {
@@ -80,6 +96,18 @@ function Home() {
               </div>
                 
             </div>
+    </div>
+    <div>
+      <form onSubmit={handleSearchSubmit}>
+      <input
+				type="text"
+				placeholder="Search Products"
+				value={search} 
+        onChange={handlesearchChange}
+				required
+			/>
+      <button type='submit'>Search</button>
+      </form>
     </div>
 
     <div className="inline_box">

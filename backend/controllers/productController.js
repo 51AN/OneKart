@@ -14,17 +14,44 @@ const getMyProduct = asynchandler(async(req, res)=>{
 })
 
 const updateProduct = asynchandler(async(req, res)=>{
-    const {name, price, description, quantity, availability} = req.body
-    const sql = `UPDATE products
-                 SET name="${name}", price="${price}", description="${description}", quantity="${quantity}", availability="${availability}"
-                 WHERE id = ${req.params.id}`
+    let {name, price, description, quantity, availability} = req.body
 
-    connection.query(sql, (err, results) => {
+
+    const sql1 = `SELECT * FROM products WHERE id = ${req.params.id}`
+
+    connection.query(sql1, (err, results) => {
         if(err){
             res.status(400).json({msg: err})
             return
         }
-        res.status(200).json(results)
+        //res.status(200).json(results)
+        if(!name){
+            name = results[0].name
+        }
+        if(!price){
+            price = results[0].price
+        }
+        if(!description){
+            description = results[0].description
+        }
+        if(!quantity){
+            quantity = results[0].quantity
+        }
+        if(!availability){
+            availability = results[0].availability
+        }
+
+        const sql = `UPDATE products
+        SET name="${name}", price="${price}", description="${description}", quantity="${quantity}", availability="${availability}"
+        WHERE id = ${req.params.id}`
+
+        connection.query(sql, (err, result) => {
+            if(err){
+                res.status(400).json({msg: err})
+                return
+            }
+            res.status(200).json(result)
+        })
     })
 })
 
@@ -72,10 +99,24 @@ const getBranchProducts = asynchandler(async(req, res)=>{
     })
 })
 
+const searchProducts = asynchandler(async(req, res)=>{
+    const { pname, branch } = req.body
+    const sql = `SELECT * FROM products WHERE name LIKE '%${pname}%' AND bid = ${branch}`
+
+    connection.query(sql, (err, results) => {
+        if(err){
+            res.status(400).json({msg: "An error occured"})
+            return
+        }
+        res.status(201).json({status:201,data:results})
+    })
+})
+
 module.exports = {
     getMyProduct,
     updateProduct,
     deleteProduct,
     topSellingProducts,
     getBranchProducts,
+    searchProducts,
 }
