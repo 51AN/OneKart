@@ -71,6 +71,7 @@ const getBranchProducts = asynchandler(async(req, res)=>{
         })
     })
 })
+
 module.exports = {
     getMyProduct,
     updateProduct,

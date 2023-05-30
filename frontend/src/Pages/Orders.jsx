@@ -54,10 +54,12 @@ function Orders() {
               <>
                 <div className="order-content">
                   <p><b>Product name : </b>  {el.pname}</p>
-                  <p><b>QTY :</b>  {el.quantity}</p>
-                  <p><b>Total price :</b>  {el.price}</p>
+                  <p><b>QTY :</b>  {el.qty}</p>
+                  <p><b>Ordered from :</b>  {el.orderto}</p>
+                  <p><b>Total price :</b>  {el.total}</p>
                   <p><b>Address :</b>  {el.address}, {el.district}</p>
                   {el.status === "Complete" && <p><b>Order status :</b> <i  style={completeStyle}> {el.status}</i> </p>}
+                  {el.status === "Processing" && <p><b>Order status :</b>  {el.status}</p>}
                   {el.status === "Pending" && <p><b>Order status :</b>  {el.status}</p>}
                   <p><b>Order time :</b> {formatTime(el.time)} - {formatDate(el.time)}</p>
                 </div>
