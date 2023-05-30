@@ -16,7 +16,6 @@ function ProductManager() {
     const [availability, setAvailability] = useState(null)
     const [price, setPrice] = useState(null)
     const [quantity, setQuantity] = useState(null)
-    const [msg, setMsg] = useState(null)
 
     const history = useNavigate()
 
@@ -60,6 +59,7 @@ function ProductManager() {
         }
         await axios.put(`/products/myproduct/${id}`, pdata).then((response)=>{
             toast.success("Product information updated successfully")
+            getProductData()
             }
         ).catch((error)=>{
             toast.error("Update failed")
