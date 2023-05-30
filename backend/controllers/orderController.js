@@ -46,7 +46,9 @@ const getMyOrders = asynchandler(async(req, res)=>{
                  INNER JOIN branch ON orders.bid = branch.bid
                   WHERE cartid = ${req.session.cartId}`
 
-    connection.query(sql, (err, results) => {
+    const sql1 = `SELECT * FROM logs WHERE uid = ${req.session.uid}`
+
+    connection.query(sql1, (err, results) => {
         if(err){
             res.status(400).json({msg: err})
             return
