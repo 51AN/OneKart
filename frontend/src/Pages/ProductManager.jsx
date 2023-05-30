@@ -125,7 +125,7 @@ function ProductManager() {
         </form> */}
 
 <div className="form_container">
-        <form class="form" style={{width:'700px', height:'550px'}}>
+        <form class="form" style={{width:'700px', height:'550px'}} onSubmit={handleSubmit}>
 
         <div className="input-container">
                 <input id="product_name" type="text" className="input" placeholder=" " value={name} onChange={handleNameChange}/>
