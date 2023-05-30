@@ -9,17 +9,30 @@
 }
 
 .header_text{
+    font: 100px;
     text-align: center;
-    background: linear-gradient(
+    /* background: linear-gradient(
     to right, 
     hsl(194, 100%, 62%), 
     rgb(172, 227, 248)
   );
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: transparent; */
+  color: transparent;
+  -webkit-text-stroke: 1px #fff;
+  background: url(https://i.ibb.co/NKYsft3/background.png);
+  background-clip: unset;
+  -webkit-background-clip: text;
+  background-position: 0 0;
+  animation: back 20s linear infinite;
   padding-top: 1%
 
 
+}
+@keyframes back{
+    100%{
+        background-position: 2000px 0;
+    }
 }
 
 .header_text h1{
