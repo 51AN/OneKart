@@ -5,8 +5,24 @@ import '../style/Home.css'
 
 function HomeManager() {
     const [loggedInUser, setLoggedInUser] = useState(null)
+    const [search, setSearch] = useState(null)
 
     const [data, setData] = useState([]);
+
+    const handlesearchChange = (event)=>{
+      setSearch(event.target.value)
+    }
+
+    const handleSearchSubmit = async(event)=>{
+      event.preventDefault()
+      await axios.post(`/products/searchProductsManager/`, {pname: search}).then(
+        (response)=>{
+          setData(response.data.data)
+        }
+      ).catch((error)=>{
+        console.log(error)
+      })
+    }
 
     const getUserData = async () => {
         await axios.get(`products/getbranchproducts/`).then(
@@ -29,6 +45,20 @@ function HomeManager() {
 
   return (
     <div>
+
+<div className="search-container">
+      <form onSubmit={handleSearchSubmit} className="search">
+      <input
+				type="text"
+				placeholder="Search Products"
+				value={search} 
+        onChange={handlesearchChange}
+        class="searchTerm"
+				required
+			/>
+      <button type='submit' class="searchButton">Go</button>
+      </form>
+    </div>
 
         {/* {loggedInUser && <p>Welcome, {loggedInUser}!</p>} */}
         <div className="inline_box">

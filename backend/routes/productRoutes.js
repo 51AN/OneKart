@@ -1,7 +1,7 @@
 const express = require('express')
 const multer = require('multer');
 const connection = require('../config/dbconnect');
-const { getMyProduct, updateProduct, deleteProduct, topSellingProducts, getBranchProducts, searchProducts } = require('../controllers/productController');
+const { getMyProduct, updateProduct, deleteProduct, topSellingProducts, getBranchProducts, searchProducts, searchProductsManager } = require('../controllers/productController');
 const { route } = require('./userRoutes');
 const router = express.Router()
 
@@ -69,6 +69,7 @@ router.get("/topselling/:id", topSellingProducts)
 router.get("/getbranchproducts/", getBranchProducts)
 router.get("/myproduct/:id", getMyProduct)
 router.post("/searchProducts/", searchProducts)
+router.post("/searchProductsManager/", searchProductsManager)
 router.put("/myproduct/:id", updateProduct)
 router.delete("/myproduct/:id", deleteProduct)
 

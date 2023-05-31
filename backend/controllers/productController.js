@@ -112,6 +112,19 @@ const searchProducts = asynchandler(async(req, res)=>{
     })
 })
 
+const searchProductsManager = asynchandler(async(req, res)=>{
+    const { pname } = req.body
+    const sql = `SELECT products.id, products.name, products.price, products.image FROM products INNER JOIN branch ON products.bid = branch.bid WHERE products.name LIKE '%${pname}%' AND branch.branchmanager = ${req.session.uid}`
+
+    connection.query(sql, (err, results) => {
+        if(err){
+            res.status(400).json(err)
+            return
+        }
+        res.status(201).json({status:201,data:results})
+    })
+})
+
 module.exports = {
     getMyProduct,
     updateProduct,
@@ -119,4 +132,5 @@ module.exports = {
     topSellingProducts,
     getBranchProducts,
     searchProducts,
+    searchProductsManager,
 }
