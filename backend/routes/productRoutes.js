@@ -52,7 +52,7 @@ router.post("/",upload.single("photo"),(req,res)=>{
 
 router.get("/all/:id",(req,res)=>{
     try {
-        connection.query(`SELECT * FROM products WHERE bid = ${req.params.id}`,(err,result)=>{
+        connection.query(`SELECT * FROM products WHERE bid = ${req.params.id} AND availability = 'Available'`,(err,result) =>{
             if(err){
                 console.log("error")
             }else{
