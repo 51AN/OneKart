@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 30, 2023 at 11:34 AM
+-- Generation Time: May 31, 2023 at 02:52 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -258,7 +258,8 @@ INSERT INTO `users` (`id`, `username`, `email`, `password`, `address`, `role`) V
 --
 ALTER TABLE `branch`
   ADD PRIMARY KEY (`bid`),
-  ADD KEY `branchmanager` (`branchmanager`);
+  ADD KEY `branchmanager` (`branchmanager`),
+  ADD KEY `idx_branch_bid` (`bid`);
 
 --
 -- Indexes for table `carts`
@@ -273,13 +274,17 @@ ALTER TABLE `carts`
 ALTER TABLE `cart_items`
   ADD PRIMARY KEY (`id`),
   ADD KEY `cartid` (`cartid`),
-  ADD KEY `pid` (`pid`);
+  ADD KEY `pid` (`pid`),
+  ADD KEY `idx_cart_id` (`cartid`);
 
 --
 -- Indexes for table `logs`
 --
 ALTER TABLE `logs`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idx_logs_bid` (`bid`),
+  ADD KEY `idx_logs_uid` (`uid`),
+  ADD KEY `idx_logs_oid` (`oid`);
 
 --
 -- Indexes for table `orders`
@@ -288,20 +293,26 @@ ALTER TABLE `orders`
   ADD PRIMARY KEY (`id`),
   ADD KEY `bid` (`bid`),
   ADD KEY `pid` (`pid`),
-  ADD KEY `cartid` (`cartid`);
+  ADD KEY `cartid` (`cartid`),
+  ADD KEY `idx_orders_bid` (`bid`),
+  ADD KEY `idx_orders_pid` (`pid`),
+  ADD KEY `idx_orders_cartid` (`cartid`);
 
 --
 -- Indexes for table `products`
 --
 ALTER TABLE `products`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `bid` (`bid`);
+  ADD KEY `bid` (`bid`),
+  ADD KEY `idx_products_id` (`id`),
+  ADD KEY `idx_products_bid` (`bid`);
 
 --
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idx_email` (`email`);
 
 --
 -- AUTO_INCREMENT for dumped tables
