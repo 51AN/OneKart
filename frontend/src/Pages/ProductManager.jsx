@@ -152,11 +152,16 @@ function ProductManager() {
                 <label for="quantity" className="placeholder"> Quantity </label>
             </div>
 
-            <div className="input-container">
+            {/* <div className="input-container">
                 <input id="availability" type="text" className="input" placeholder=" " value={availability} onChange={handleAvailabilityChange}/>
                 <div className="cut"></div>
                 <label for="availability" className="placeholder"> Availability </label>
-            </div>
+            </div> */}
+            <select className="select-container" id="availability-enter" onChange={handleAvailabilityChange}>
+            <option value="" disabled selected hidden>Set Availability</option>
+                  <option value="Available">Available</option>
+                  <option value="NotAvailable">Not Available</option>
+                </select>
             <button type='submit' className="update_button">
                 Update
             </button>

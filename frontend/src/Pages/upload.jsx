@@ -4,6 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 const UploadAndDisplayImage = () => {
 
+
   const [selectedImage, setSelectedImage] = useState(null);
   const [name, setName] = useState(null)
   const [description, setDescription] = useState(null)
@@ -160,11 +161,16 @@ const UploadAndDisplayImage = () => {
                 <label for="quantity-enter" className="placeholder"> Quantity </label>
             </div>
 
-            <div className="input-container">
-                <input id="availability-enter" type="text" className="input" placeholder=" " value={availability} onChange={handleAvailabilityChange}/>
+
+                {/* <input id="availability-enter" type="text" className="input" placeholder=" " value={availability} onChange={handleAvailabilityChange}/>
                 <div className="cut"></div>
-                <label for="availability-enter" className="placeholder"> Availability </label>
-            </div>
+                <label for="availability-enter" className="placeholder"> Availability </label> */}
+                <select className="select-container" id="availability-enter" onChange={handleAvailabilityChange}>
+                  <option value="" disabled selected hidden>Set Availability</option>
+                  <option value="Available">Available</option>
+                  <option value="NotAvailable">Not Available</option>
+                </select>
+
         <div className="input-container">
             <input id="image_enter"  type="file" className="input" placeholder=" " name="myImage" onChange={handleImage}/>
             <div className="cut"></div>

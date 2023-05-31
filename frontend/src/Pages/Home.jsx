@@ -97,24 +97,32 @@ function Home() {
                 
             </div>
     </div>
-    <div>
-      <form onSubmit={handleSearchSubmit}>
+
+    <div className="search-container">
+      <form onSubmit={handleSearchSubmit} className="search">
       <input
 				type="text"
 				placeholder="Search Products"
 				value={search} 
         onChange={handlesearchChange}
+        class="searchTerm"
 				required
 			/>
-      <button type='submit'>Search</button>
+      <button type='submit' class="searchButton">Go</button>
       </form>
     </div>
 
-    <div className="inline_box">
-      <div className="text-box">
-        <h2>Top selling products</h2>
-      </div>
+
+
+    {topsellingProductData && topsellingProductData.length > 0 ? (
+  <div className="inline_box">
+    <div className="text-box">
+      <h2>Top selling products</h2>
     </div>
+  </div>
+) : null}
+
+    
       <div className = "top-container">
         {/* {loggedInUser && <p>Welcome, {loggedInUser}!</p>} */}
         

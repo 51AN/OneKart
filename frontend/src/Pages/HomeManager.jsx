@@ -46,7 +46,7 @@ function HomeManager() {
                 <div className = "all-products">
                       <img className="all_image" src={`http://localhost:5000/uploads/${el.image}`} alt='bla bla bla' style={{width:'200px', height:'200px'}}/>
                       <h3>{el.name}</h3>
-                      <p>{el.description}</p>
+                      <p>{el.price} ৳BDT</p>
                     </div>
                   </Link>
                 </>
