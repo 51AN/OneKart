@@ -109,12 +109,12 @@ CREATE TABLE `logs` (
 --
 
 INSERT INTO `logs` (`id`, `orderfrom`, `orderto`, `pname`, `qty`, `total`, `district`, `address`, `zipcode`, `time`, `bid`, `uid`, `status`, `oid`) VALUES
-(11, 'zhongli', 'OneKart-Dhaka', 'kitkat', 1, 40, 'Uttara', 'asdf', '2345', '2023-05-29 14:04:45', 1, 21, '', 0),
-(12, 'nahida', 'OneKart-Dhaka', 'potato chips', 2, 60, 'Gazipur', 'Boardbazar', '1234', '2023-05-29 14:07:39', 1, 22, 'Pending', 0),
-(13, 'nahida', 'OneKart-Dhaka', 'snickers', 2, 200, 'Gazipur', 'Boardbazar', '1234', '2023-05-29 14:07:39', 1, 22, 'Pending', 0),
-(14, 'abc', 'OneKart-Dhaka', 'potato chips', 1, 30, 'Gazipur', 'Boardbazar', '1234', '2023-05-30 03:25:14', 1, 25, 'Pending', 72),
-(15, 'abc', 'OneKart-Dhaka', 'ice crean', 1, 50, 'Gazipur', 'Boardbazar', '1234', '2023-05-30 03:25:59', 1, 25, 'Processing', 73),
-(16, 'kjislam', 'OneKart-Dhaka', 'potato chips', 1, 30, 'Mohammadpur', 'Dhaka', '1207', '2023-05-31 15:17:44', 1, 26, 'Complete', 74);
+(11, 'zhongli', 'OneKart-Dhaka', 'Kitkat', 1, 40, 'Uttara', 'asdf', '2345', '2023-05-29 14:04:45', 1, 21, '', 0),
+(12, 'nahida', 'OneKart-Dhaka', 'Potato chips', 2, 60, 'Gazipur', 'Boardbazar', '1234', '2023-05-29 14:07:39', 1, 22, 'Pending', 0),
+(13, 'nahida', 'OneKart-Dhaka', 'Snickers', 2, 200, 'Gazipur', 'Boardbazar', '1234', '2023-05-29 14:07:39', 1, 22, 'Pending', 0),
+(14, 'abc', 'OneKart-Dhaka', 'Potato chips', 1, 30, 'Gazipur', 'Boardbazar', '1234', '2023-05-30 03:25:14', 1, 25, 'Pending', 72),
+(15, 'abc', 'OneKart-Dhaka', 'Ice crean', 1, 50, 'Gazipur', 'Boardbazar', '1234', '2023-05-30 03:25:59', 1, 25, 'Processing', 73),
+(16, 'kjislam', 'OneKart-Dhaka', 'Potato chips', 1, 30, 'Mohammadpur', 'Dhaka', '1207', '2023-05-31 15:17:44', 1, 26, 'Complete', 74);
 
 -- --------------------------------------------------------
 
@@ -191,12 +191,12 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `description`, `image`, `price`, `sellcount`, `availability`, `quantity`, `bid`) VALUES
-(17, 'kitkat', 'choco', 'image-1680535123987.R (2).jpg', 40, 10, 'available', 65, 1),
-(32, 'snickers', 'good choco', 'image-1681560420948.R.jpg', 100, 9, 'Available', 45, 1),
-(35, 'ice cream', 'ice-cream', 'image-1682107977956.ice-cream.jpg', 50, 13, 'available', 246, 1),
-(37, 'lays', 'chips', 'image-1682108020690.lays.jpg', 30, 7, 'available', 250, 1),
-(38, 'potato chips', 'chips', 'image-1682108037479.potato.jpg', 30, 16, 'available', 249, 1),
-(39, 'dark fantasy', 'biscuit', 'image-1682108056990.dark.jpg', 30, 6, 'available', 250, 1),
+(17, 'Kitkat', 'choco', 'image-1680535123987.R (2).jpg', 40, 10, 'available', 65, 1),
+(32, 'Snickers', 'good choco', 'image-1681560420948.R.jpg', 100, 9, 'Available', 45, 1),
+(35, 'Ice cream', 'ice-cream', 'image-1682107977956.ice-cream.jpg', 50, 13, 'available', 246, 1),
+(37, 'Lays', 'chips', 'image-1682108020690.lays.jpg', 30, 7, 'available', 250, 1),
+(38, 'Potato chips', 'chips', 'image-1682108037479.potato.jpg', 30, 16, 'available', 249, 1),
+(39, 'Dark fantasy', 'biscuit', 'image-1682108056990.dark.jpg', 30, 6, 'available', 250, 1),
 (41, 'Chocobar', 'Delicious ice-cream', 'image-1685000618918.feast-ice-cream-500x500.webp', 70, 5, 'Available', 100, 2),
 (43, 'Nutella', 'Delicious nutella', 'image-1685000677103.OIP (4).jpg', 300, 5, 'available', 50, 2),
 (44, 'Cup Noodles', 'masala flavoured cup noddles', 'image-1685546124436.0202148_mr-noodles-cup-noodles-magic-masala-40gm.jpeg', 40, 5, 'Available', 50, 0),
