@@ -21,9 +21,12 @@
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-  width: 50%;
+  width: 50px;
   will-change: transform;
+  
 }
+
+
 
 .plus_button:disabled {
     pointer-events: none;
@@ -42,10 +45,20 @@
   }
 
 
-.cart_details p{
-    padding-left: 25px;
+.cart_details h4{
+    padding-left: 22px;
 }
 
 .cart_empty{
     text-align: center;
+}
+
+.text-flex{
+  display: flex;
+  justify-content: space-between;
+  
+}
+
+.right-side-pay{
+  
 }

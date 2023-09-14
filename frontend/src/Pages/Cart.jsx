@@ -100,16 +100,16 @@ function Cart() {
                       </div>
                       <div className="cart_details">
                         <h2>{el.name}</h2>
-                        <div >
+                        <div className="button_pad">
                           <button className="plus_button" onClick={()=>handleIncrease(el.id)}>+</button>
                         </div>
                         <div className="quantity">
-                          <p>{el.quantity}</p>
+                          <h4>{el.quantity}</h4>
                         </div>
-                        <div>
+                        <div className="button_pad">
                           <button  className="plus_button" onClick={()=>handleDecrease(el.id)}>-</button>
                         </div>
-                        <p>{el.price}</p>
+                        <h3>{el.price} BDT</h3>
                       </div>
                     </div>
                     
@@ -122,11 +122,22 @@ function Cart() {
       {totalAmountToPay && <div>
         <div className="inline_box">
       <div className="text-box">
-        <h2>Total Amount to Pay</h2>
+        <div className="text-flex">
+          <h2>Total Amount to Pay&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          </h2>
+          <h2 className="right-side-pay">{totalAmountToPay} BDT</h2>
+        </div>
       </div>
     </div>
         <p className="cart_content">
-          {totalAmountToPay}
+          
         </p>
         <Link to="/checkout/"><button className="add_button">Checkout</button></Link>  </div>}
     </div>

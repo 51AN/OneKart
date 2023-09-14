@@ -46,7 +46,7 @@ function HomeManager() {
   return (
     <div>
 
-<div className="search-container">
+<div className="search-container-man">
       <form onSubmit={handleSearchSubmit} className="search">
       <input
 				type="text"

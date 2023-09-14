@@ -14,44 +14,44 @@ const UploadAndDisplayImage = () => {
   const [msg, setMsg] = useState(null)
   const [bid, setBid] = useState(null)
 
-  const handleSubmit = async(event)=>{
-    event.preventDefault()
-
-    const managerId = localStorage.getItem("userId")
-    await axios.get(`/branch/${managerId}`).then(
-      (response)=>{
-        setBid(response.data[0].bid)
-      }
-    ).catch((error)=>{
-      console.log(error)
-    })
-
-    const formData = new FormData();
-    
-    formData.append("name",name)
-    formData.append("description", description)
-    formData.append("photo",selectedImage)
-    formData.append("price", price)
-    formData.append("quantity", quantity)
-    formData.append("availability", availability)
-    formData.append("bid", bid)
-
-    const config = {
-        headers:{
-            "Content-Type":"multipart/form-data"
-        }
-    }
-
-
-    await axios.post("/products/", formData, config).then(
-      (response)=>{
-        toast.success("Product uploaded successfully")
-        
-      }
-    ).catch((error)=>{
-      toast.error("An error occured while uploading")
-    })
-  }
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+  
+    const managerId = localStorage.getItem("userId");
+    await axios
+      .get(`/branch/${managerId}`)
+      .then((response) => {
+        setBid(response.data[0].bid);
+  
+        const formData = new FormData();
+  
+        formData.append("name", name);
+        formData.append("description", description);
+        formData.append("photo", selectedImage);
+        formData.append("price", price);
+        formData.append("quantity", quantity);
+        formData.append("availability", availability);
+        formData.append("bid", response.data[0].bid);
+  
+        const config = {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        };
+  
+        axios
+          .post("/products/", formData, config)
+          .then((response) => {
+            toast.success("Product uploaded successfully");
+          })
+          .catch((error) => {
+            toast.error("An error occurred while uploading");
+          });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   const handleNameChange = (event)=>{
     setName(event.target.value)

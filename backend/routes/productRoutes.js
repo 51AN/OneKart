@@ -37,7 +37,7 @@ router.post("/",upload.single("photo"),(req,res)=>{
     
     try {
         
-        connection.query("INSERT INTO products SET ?",{name:name, description:description, image:filename, price:price, sellcount:5, availability:availability, quantity:quantity, bid:bid},(err,result)=>{
+        connection.query("INSERT INTO products SET ?",{name:name, description:description, image:filename, price:price, sellcount:0, availability:availability, quantity:quantity, bid:bid},(err,result)=>{
             if(err){
                 console.log("error")
             }else{

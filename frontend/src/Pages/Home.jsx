@@ -92,13 +92,15 @@ function Home() {
               <select className="header_select" value={selectedCatagory} onChange={handleSelectionChange}>
                     <option value="1">Dhaka</option>
                     <option value="2">Mymensingh</option>
+                    <option value="3">Gazipur</option>
+                    <option value="4">Chittagong</option>
                 </select>
               </div>
                 
             </div>
     </div>
 
-    <div className="search-container">
+<div className="search-container">
       <form onSubmit={handleSearchSubmit} className="search">
       <input
 				type="text"
@@ -111,6 +113,8 @@ function Home() {
       <button type='submit' class="searchButton">Go</button>
       </form>
     </div>
+
+    
 
 
 

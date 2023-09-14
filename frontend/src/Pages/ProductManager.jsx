@@ -92,10 +92,11 @@ function ProductManager() {
             <div className="pro_details">
                 <h1>{product.name}</h1>
                 <h4>{product.description}</h4>
-                <h3>Price: {product.price} ৳BDT</h3>
-                <p>Total sales: {product.sellcount}</p>
-                <p>Quantity: {product.quantity}</p>
-                <p>Earning: {product.price * product.sellcount}</p>
+                <h3>Price : {product.price} ৳BDT</h3>
+                <p>Total sales : {product.sellcount}</p>
+                <p>Quantity : {product.quantity}</p>
+                <p>Earning : {product.price * product.sellcount} BDT</p>
+                <p>Availability : {product.availability}</p>
             </div>
             
           </div>
